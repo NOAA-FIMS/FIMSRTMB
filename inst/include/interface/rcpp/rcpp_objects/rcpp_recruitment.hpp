@@ -12,6 +12,7 @@
 
 #include "../../../population_dynamics/recruitment/recruitment.hpp"
 #include "rcpp_interface_base.hpp"
+#include "../../RTMB.h"
 
 /**
  * @brief Rcpp interface that serves as the parent class for Rcpp recruitment
@@ -183,10 +184,9 @@ class BevertonHoltRecruitmentInterface : public RecruitmentInterfaceBase {
    * @brief Evaluate recruitment using the Beverton--Holt stock--recruitment
    * relationship.
    * @param spawners Spawning biomass per time step.
-   * @param ssbzero The biomass at unfished levels.
-   * TODO: Change to sbzero if continuing to use acronyms.
+   * @param phi_0 Ratio of spawners per recruit of an unfished population.
    */
-  virtual double evaluate_mean(double spawners, double ssbzero) {
+  virtual double evaluate_mean(double spawners, double phi_0) {
     fims_popdy::SRBevertonHolt<double> BevHolt;
     BevHolt.logit_steep.resize(1);
     BevHolt.logit_steep[0] = this->logit_steep[0].initial_value_m;
@@ -198,8 +198,44 @@ class BevertonHoltRecruitmentInterface : public RecruitmentInterfaceBase {
     BevHolt.log_rzero.resize(1);
     BevHolt.log_rzero[0] = this->log_rzero[0].initial_value_m;
 
-    return BevHolt.evaluate_mean(spawners, ssbzero);
+    return BevHolt.evaluate_mean(spawners, phi_0);
   }
+
+  #ifdef TMB_MODEL
+    /**
+   * @brief Evaluate recruitment using the Beverton--Holt stock--recruitment
+   * relationship.
+   * @param spawners Spawning biomass per time step.
+   * @param phi_0 Ratio of spawners per recruit of an unfished population.
+   */
+   ADrep evaluate_mean_RTMB(ADrep spawners, ADrep phi_0, ADrep logit_steep, ADrep log_rzero) {
+    fims_popdy::SRBevertonHolt<ad> BevHolt;
+    const ad* spawners_ptr = adptr(spawners);
+    const ad* phi_0_ptr = adptr(phi_0);
+    const ad* logit_steep_ptr = adptr(logit_steep);
+    const ad* log_rzero_ptr = adptr(log_rzero);
+
+    BevHolt.logit_steep.resize(1);
+    BevHolt.logit_steep[0] = *logit_steep_ptr;
+    if (BevHolt.logit_steep[0] == 1.0) {
+      Rcpp::warning(
+        "Steepness is subject to a logit transformation. "
+        "Fixing it at 1.0 is not currently possible."
+      );
+    }
+    BevHolt.log_rzero.resize(1);
+    BevHolt.log_rzero[0] = *log_rzero_ptr;
+
+    int n = spawners.size();
+    ADrep ans(n); 
+    ad* Y = adptr(ans); 
+    for(int i=0; i<n; i++){
+        Y[i] = BevHolt.evaluate_mean(spawners_ptr[i], phi_0_ptr[0]);
+    }
+  
+    return ans; 
+  }
+  #endif
 
   /**
    * @brief Evaluate recruitment process - returns 0 in this module.

@@ -239,7 +239,10 @@ RCPP_MODULE(fims) {
       .field("n_years", &BevertonHoltRecruitmentInterface::n_years)
       .method("get_id", &BevertonHoltRecruitmentInterface::get_id)
       .method("SetRecruitmentProcessID",
-              &BevertonHoltRecruitmentInterface::SetRecruitmentProcessID)
+              &BevertonHoltRecruitmentInterface::SetRecruitmentProcessID,
+              "Set unique ID for recruitment process")
+      .method("evaluate_mean_RTMB", &BevertonHoltRecruitmentInterface::evaluate_mean_RTMB,
+                "Evaluate the mean recruitment using the RTMB framework")
       .method("evaluate_mean",
               &BevertonHoltRecruitmentInterface::evaluate_mean);
 
@@ -379,6 +382,7 @@ RCPP_MODULE(fims) {
              &LogisticSelectivityInterface::inflection_point)
       .field("slope", &LogisticSelectivityInterface::slope)
       .method("get_id", &LogisticSelectivityInterface::get_id)
+      .method("evaluate_RTMB", &LogisticSelectivityInterface::evaluate_RTMB)
       .method("evaluate", &LogisticSelectivityInterface::evaluate);
 
   Rcpp::class_<DoubleLogisticSelectivityInterface>(
