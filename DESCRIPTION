@@ -79,6 +79,7 @@ Suggests:
     pkgdown,
     remotes,
     rmarkdown,
+    RTMB,
     snowfall,
     spelling,
     styler,
