@@ -22,7 +22,9 @@
 // issue
 #include <math.h>
 
-#include <TMB.hpp>
+#include "TMB.h"
+#undef length
+#undef isNull
 
 // define REPORT, ADREPORT, and SIMULATE
 #define FIMS_REPORT_F(name, F)                                         \

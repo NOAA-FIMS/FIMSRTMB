@@ -1,4 +1,5 @@
 ADMB
+ADrep
 ADREPORT
 ADREPORTvector
 AIX
@@ -97,10 +98,13 @@ ClassName
 Codecov
 Codespace
 Codespaces
+ComplexMatrix
+ComplexVector
 ComputeProportions
 ConfigRoutine
 ConfigurePopulationModel
 Const
+ConstMapMatrix
 ConstraintWorks
 CppAD
 CreateFleetObjects
@@ -109,6 +113,7 @@ CreateModelingObjects
 CreateObject
 CreatePopulationObjects
 CreateTMBModel
+CTOR
 Ctrl
 DBENCHMARK
 DBUILD
@@ -155,6 +160,7 @@ DoubleLogisticSelectivity
 DoubleLogisticSelectivityInterface
 DoxygenLayout
 DragonFly
+Eigen
 ELT
 ENDIF
 EOF
@@ -163,6 +169,8 @@ EWAA
 EWAAGrowth
 EWAAGrowthInterface
 EXPR
+ExternalPtrAddr
+EXTPTRSXP
 ErrorRoutine
 EvaluateRecruitmentProcess
 ExtraYear
@@ -174,6 +182,8 @@ FIMSLog
 FIMSMath
 FIMSObject
 FIMSRcppInterfaceBase
+FIMSRTMB
+FindSymbol
 FBCA
 FIXME
 FMort
@@ -302,6 +312,7 @@ LogR
 LogRRecruitmentInterface
 LogRRecruitmentProcess
 LogRecDev
+LogSel
 LogisticMat
 LogisticMaturity
 LogisticMaturityInterface
@@ -320,6 +331,9 @@ MakeADFun
 MakeAvailable
 MakeLogger
 Makevars
+MapMatrix
+MatrixInput
+MatrixOutput
 MaturityAtAge
 MaturityBase
 MaturityInterfaceBase
@@ -369,6 +383,7 @@ PopulationInterface
 PopulationInterfaceBase
 PopulationPrepareTestFixture
 Postfix
+PRECOMPILE
 PrepareCAA
 PrepareConstrainedDeviations
 PreservesPathAndThrowOnErrorConfiguration
@@ -383,6 +398,7 @@ RObject
 RStudio
 Rbuildignore
 Rcerr
+Rcomplex
 Rcout
 Rcpp
 RcppCommon
@@ -403,9 +419,11 @@ RegisterRandomEffectName
 Reparameterization
 ResetVector
 Ricker
+Rinternals
 Rmd
 Rmpi
 Robj
+Rprintf
 Rscript
 Rslaves
 RTMB
@@ -427,6 +445,7 @@ SSBy
 STR
 STYLESHEET
 SUBPOPULATION
+ScalarInput
 SelectivityBase
 SelectivityIDs
 SelectivityInterfaceBase
@@ -468,6 +487,9 @@ SharedString
 ShowPopulation
 SkipWhitespace
 SortIncludes
+SparseInput
+SparseMatrix
+SparseOutput
 SrBevertonHoltEvaluate
 Stroustrup
 Subpopulation
@@ -517,7 +539,13 @@ absolutePath
 acomp
 acos
 adcomp
+admatrix
+adptr
 adreport
+adscalar
+adsparse
+advector
+asS
 aes
 ageage
 agecomp
@@ -622,6 +650,7 @@ cov
 covr
 cp
 cplusplus
+cplx
 cpp
 cpus
 cran
@@ -728,6 +757,7 @@ fims
 fimsfit
 fimsframe
 fimslog
+fimsrtmb
 findutils
 firstname
 fishres
@@ -741,14 +771,18 @@ fsel
 fstream
 func
 functors
+funptr
 gc
 gcc
 gcovr
 gdb
 geeksforgeeks
 getAbsolutePathWithoutDotDot
+getDLLRegisteredRoutines
+getLoadedDLLs
 getNamespaceExports   
 getOption
+getSetGlobalPtr
 getenv
 getline
 getpwuid
@@ -776,6 +810,7 @@ gstatic
 gsub
 gte
 gtest
+hasAttribute
 hasMethod
 hexlogo
 holt
@@ -800,6 +835,8 @@ infile
 inheritParams
 init
 initializer
+innerIndexPtr
+innerNonZeroPtr
 inplace
 instantiation
 instantiations
@@ -815,6 +852,7 @@ isdigit
 isfinite
 isinf
 isnan
+isNull
 isspace
 issueNumbers
 istringstream
@@ -935,9 +973,11 @@ nlog
 nm
 nmfs
 nmfspalette
+nnz
 noRd
 noaa
 noexcept
+nonZeros
 noreply
 normalizePath
 np
@@ -960,6 +1000,7 @@ ogive
 onLoad
 onUnload
 onboarding
+ontape
 openssl
 oppy
 optim
@@ -971,6 +1012,7 @@ osa
 ost
 ostream
 ostringstream
+outerIndexPtr 
 outputFile
 overfishing
 overparameterized
@@ -1016,7 +1058,9 @@ purrr
 pw
 pwalk
 pwd
+px
 qit
+qmd
 qnorm
 qobj
 rapidjson
@@ -1067,6 +1111,7 @@ roxygenise
 rspm
 rstan
 rstream
+rtmb
 rtools
 ru
 rvit
@@ -1100,6 +1145,7 @@ setMethod
 setNames
 setOldClass
 setValidity
+setclass
 setdiff
 setequal
 setprecision
@@ -1116,6 +1162,7 @@ sig
 sigmaR
 simplifyVector
 sinh
+sizeof
 slotNames
 snames
 snuts
@@ -1230,6 +1277,7 @@ valarray
 validator
 validators
 vals
+valuePtr
 vapply
 vec
 vectorized

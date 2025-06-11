@@ -7,6 +7,7 @@
  */
 #ifndef FIMS_INTERFACE_RCPP_INTERFACE_HPP
 #define FIMS_INTERFACE_RCPP_INTERFACE_HPP
+
 #include "../../common/model.hpp"
 #include "../../utilities/fims_json.hpp"
 #include "rcpp_objects/rcpp_data.hpp"

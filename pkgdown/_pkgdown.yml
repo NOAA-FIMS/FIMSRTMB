@@ -1,4 +1,4 @@
-url: https://NOAA-FIMS.github.io/FIMS
+url: https://NOAA-FIMS.github.io/FIMSRTMB
 
 home:
   title: Fisheries Integrated Modeling System (FIMS)
@@ -82,45 +82,14 @@ navbar:
     articles:
       text: articles
       menu:
-        - text: Intro to FIMS
-        - text: Introducing the Fisheries Integrated Modeling System (FIMS)
-          href: articles/fims-demo.html
-        - text: Introducing FIMS Input Data
-          href: articles/fims-input-data.html
-        - text: Introducing the FIMS Logging System
-          href: articles/fims-logging.html
-        - text: FIMS User Setup Guide
-          href: articles/fims-user-setup-guide.html
-        - text: Simple projections using FIMS
-          href: articles/fims-demo-projections.html
-        - text: -------
-        - text: Developer
-        - text: Adding a New C++ Module
-          href: articles/adding-new-module.html
-        - text: FIMS Path - Maturity
-          href: articles/fims-path-maturity.html
-        - text: -------
-        - text: C++ Training
-        - text: Intro to C++
-          href: articles/training-intro-cpp.html
-        - text: Intro to Rcpp
-          href: articles/training-intro-rcpp.html
-        - text: -------
-        - text: Research and Development
-        - text: RE Sparsity
-          href: articles/RD-re-sparsity.html
-    reports:
-      text: reports
-      menu: 
-        - text: coverage (codecov)
-          href: https://app.codecov.io/gh/NOAA-FIMS/FIMS
-          target: _blank
-        - text: testdown
-          href: https://noaa-fims.github.io/FIMS/testdown/index.html
+        - text: RTMB demo
+          href: articles/RTMB_demo.html
+        - text: RTMB add module
+          href: articles/RTMB_add_module.html
     website:
       text: fims website
       href: https://noaa-fims.github.io/
     github:
       icon: fa-brands fa-github fa-lg
-      href: https://github.com/noaa-fims/fims/
-      aria-label: GitHub repository for FIMS
+      href: https://github.com/noaa-fims/fimsrtmb
+      aria-label: GitHub repository for FIMSRTMB
