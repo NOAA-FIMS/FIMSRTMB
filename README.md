@@ -7,23 +7,20 @@
 
 # Overview
 
-The NOAA Fisheries Integrated Modeling System (FIMS) is a software system designed to support next-generation fisheries stock assessment, ecosystem, and socioeconomic modeling. A team of experts within NOAA Fisheries is designing and developing the system, and we are advised by the FIMS Council, which includes academic, industry, and international partners. The roles of internal and external collaborators are outlined in the [governance section](https://noaa-fims.github.io/collaborative_workflow/fims-governance.html) of our [Developer Guide](https://noaa-fims.github.io/collaborative_workflow/). Our software is currently operational for estimation purposes and we plan for it to be operational for management in late 2025.
+This fork represents an RTMB extension of the NOAA Fisheries Integrated Modeling System (FIMS). Users can access functions within FIMS to build their own custom fisheries models using RTMB. An example is provided in the vignettes, RTMB-demo. Currently, the only function available is logisitic selectivity. Please see detailed instructions below on how to make a FIMS function available for RMTB. Note that this fork does not run a FIMS model, it only accesses FIMS functions. See the [FIMS](https://noaa-fims.github.io/FIMS/) main repo for details on the FIMS R package.
 
-Users and developers are welcome to submit ideas or questions using the [GitHub Discussion Board](https://github.com/NOAA-FIMS/FIMS/discussions) and bug reports using GitHub Issues. The [Discussion Board](https://github.com/NOAA-FIMS/FIMS/discussions) is a place for **all** members of the assessment and open-source software community to ask and answer questions, share updates, have open-ended conversations, and follow along on decisions affecting FIMS. If you happen to find a bug, please report it in the appropriate repository, for example use [issues in the collaborative workflow repository](https://github.com/NOAA-FIMS/collaborative_workflow/issues) to make suggestions about the [developer guide](https://noaa-fims.github.io/collaborative_workflow/) and [issues in the FIMS repository](https://github.com/NOAA-FIMS/FIMS/issues) for bugs in the software design.
+Users and developers are welcome to submit ideas or questions using the [GitHub Discussion Board](https://github.com/NOAA-FIMS/FIMS/discussions). The [Discussion Board](https://github.com/NOAA-FIMS/FIMS/discussions) is a place for **all** members of the assessment and open-source software community to ask and answer questions, share updates, have open-ended conversations, and follow along on decisions affecting FIMS. If you happen to find a bug, please report it to the issues page in this [FIMS.RTMB fork](https://github.com/NOAA-FIMS/FIMS.RTMB/issues).
 
-## Installing FIMS
+## Installing FIMS.RTMB
 
-Install the latest [precompiled version of FIMS](https://noaa-fims.r-universe.dev/FIMS) from [R universe](https://noaa-fims.r-universe.dev) within R using the following code:
-
-```r
-install.packages("FIMS", repos = c("https://noaa-fims.r-universe.dev", "https://cloud.r-project.org"))
+Install the latest version of FIMS.RTMB from github:
 ```
-
-Or, you can follow the instructions in the [Collaborative Workflow](https://noaa-fims.github.io/collaborative_workflow/developer-software-and-installation-guide.html) to install FIMS from GitHub or a local clone.
+remotes::install_github("NOAA-FIMS/FIMS.RTMB)
+```
 
 ## Getting Help
 
-Please report bugs along with a minimal reproducible example on the FIMS [GitHub Issues page](https://github.com/NOAA-FIMS/FIMS/issues).
+Please report bugs along with a minimal reproducible example on the FIMS [GitHub Issues page](https://github.com/NOAA-FIMS/FIMS.RTMB/issues).
 
 ## Code of Conduct
 
