@@ -19,14 +19,7 @@ template:
 articles:
 - title: Fisheries Integrated Modeling System (FIMS)
   contents:
-  - fims-documentation
-  - fims-demo
-  - fims-demo-minimal
-  - fims-logging
-
-- title: Developer
-  contents:
-  - fims-path-maturity
+  - RTMB_demo
 
 reference:
 - title: Data
