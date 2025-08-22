@@ -1,5 +1,5 @@
 ---
-title: "Introducing the Fisheries Integrated Modeling System (FIMS)"
+title: "Call FIMS module from RTMB"
 output: github_document
 vignette: >
   %\VignetteIndexEntry{Introducing the Fisheries Integrated Modeling System (FIMS)}

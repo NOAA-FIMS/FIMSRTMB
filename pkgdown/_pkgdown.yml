@@ -1,4 +1,4 @@
-url: https://NOAA-FIMS.github.io/FIMS
+url: https://NOAA-FIMS.github.io/FIMS.RTMB
 
 home:
   title: Fisheries Integrated Modeling System (FIMS)
@@ -20,6 +20,7 @@ articles:
 - title: Fisheries Integrated Modeling System (FIMS)
   contents:
   - RTMB_demo
+  - RTMB_add_module
 
 reference:
 - title: Data

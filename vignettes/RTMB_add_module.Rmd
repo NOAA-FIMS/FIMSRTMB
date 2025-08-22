@@ -1,0 +1,258 @@
+---
+title: "Modify a FIMS module to make it callable from RTMB"
+output: github_document
+vignette: >
+  %\VignetteIndexEntry{Introducing the Fisheries Integrated Modeling System (FIMS)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Step 1 Navigate to the rcpp directory and rcpp file of interest
+
+The rcpp directory is located in `inst/include/interface/rcpp/rcpp_objects`. 
+Here, Rcpp interface files are listed by category, e.g. `rcpp_growth`, 
+`rcpp_selectivity`, etc. This vignette will walk through modifying the 
+BevertonHolt recruitment function in `rcpp_recruitment.hpp` to make it callable from RTMB.
+
+At the top of the file, add the following if it isn't already included:
+```{r eval = FALSE}
+#include "../../RTMB.h"
+```
+
+## Step 2 Locate the BevertonHolt recruitment `evaluate_mean` function in `rcpp_recruitment`
+
+Find the `BevertonHoltRecruitmentInterface`. Within this class, locate the 
+`evaluate_mean` function, this is where the BevertonHolt C++ function is called. 
+Note in other modules, this function will just be called `evaluate()`
+This function needs to be copied and the copy then modified to be callable from RTMB.
+
+```{r eval=FALSE}
+ virtual double evaluate_mean(double spawners, double ssbzero) {
+    fims_popdy::SRBevertonHolt<double> BevHolt;
+    BevHolt.logit_steep.resize(1);
+    BevHolt.logit_steep[0] = this->logit_steep[0].initial_value_m;
+    if (this->logit_steep[0].initial_value_m == 1.0) {
+      Rcpp::warning(
+        "Steepness is subject to a logit transformation. "
+        "Fixing it at 1.0 is not currently possible."
+      );
+    }
+    BevHolt.log_rzero.resize(1);
+    BevHolt.log_rzero[0] = this->log_rzero[0].initial_value_m;
+
+    return BevHolt.evaluate_mean(spawners, ssbzero);
+  }
+  ```
+
+  ## Step 3: Create a copy of this function. Rename it to `evaluate_mean_RTMB` and 
+  modify the type from `virtual double` to `ADrep`. Add documentation and 
+  wrap the entire function in:
+  ```{r eval=FALSE}
+  #ifdef TMB_MODEL 
+  ...
+  #endif
+  ```
+This will ensure that this function is only compiled when TMB is being used.
+
+```{r eval=FALSE}
+#ifdef TMB_MODEL
+    /**
+   * @brief Evaluate recruitment using the Beverton--Holt stock--recruitment
+   * relationship.
+   * @param spawners Spawning biomass per time step.
+   * @param ssbzero The biomass at unfished levels.
+   */
+   ADrep evaluate_mean_RTMB(double spawners, double ssbzero) {
+    fims_popdy::SRBevertonHolt<double> BevHolt;
+    BevHolt.logit_steep.resize(1);
+    BevHolt.logit_steep[0] = this->logit_steep[0].initial_value_m;
+    if (this->logit_steep[0].initial_value_m == 1.0) {
+      Rcpp::warning(
+        "Steepness is subject to a logit transformation. "
+        "Fixing it at 1.0 is not currently possible."
+      );
+    }
+    BevHolt.log_rzero.resize(1);
+    BevHolt.log_rzero[0] = this->log_rzero[0].initial_value_m;
+
+    return BevHolt.evaluate_mean(spawners, ssbzero);
+  }
+  #endif
+  ```
+
+  ## Step 4: Modify types:
+  - Modify the types of the input parameters from `double` to `ADrep`
+  - Modify the type within the class declaration function from `double` to `ad`, e.g.
+    `fims_popdy::SRBevertonHolt<double>` to `fims_popdy::SRBevertonHolt<ad>`
+
+  ```{r eval=FALSE}
+   ADrep evaluate_mean_RTMB(ADrep spawners, ADrep ssbzero) {
+    fims_popdy::SRBevertonHolt<ad> BevHolt;
+    BevHolt.logit_steep.resize(1);
+    BevHolt.logit_steep[0] = this->logit_steep[0].initial_value_m;
+    if (this->logit_steep[0].initial_value_m == 1.0) {
+      Rcpp::warning(
+        "Steepness is subject to a logit transformation. "
+        "Fixing it at 1.0 is not currently possible."
+      );
+    }
+    BevHolt.log_rzero.resize(1);
+    BevHolt.log_rzero[0] = this->log_rzero[0].initial_value_m;
+
+    return BevHolt.evaluate_mean(spawners, ssbzero);
+  }
+  ```
+
+
+## Step 5: Add new pointers for each parameter
+For each input parameter, set up a new pointer using `const ad*` and wrap the 
+input parameter in `adptr()`. If there are additional parameters in the model that
+are not specified in the input, e.g. `logit_steep`, add them as parameters to the 
+input and set up new pointers for them:
+
+```{r eval = FALSE}
+   ADrep evaluate_mean_RTMB(ADrep spawners, ADrep ssbzero, ADrep logit_steep, ADrep log_rzero) {
+    fims_popdy::SRBevertonHolt<ad> BevHolt;
+    const ad* spawners_ptr = adptr(spawners);
+    const ad* ssbzero_ptr = adptr(ssbzero);
+    const ad* logit_steep_ptr = adptr(logit_steep);
+    const ad* log_rzero_ptr = adptr(log_rzero);
+    
+    BevHolt.logit_steep.resize(1);
+    BevHolt.logit_steep[0] = this->logit_steep[0].initial_value_m;
+    if (this->logit_steep[0].initial_value_m == 1.0) {
+      Rcpp::warning(
+        "Steepness is subject to a logit transformation. "
+        "Fixing it at 1.0 is not currently possible."
+      );
+    }
+    BevHolt.log_rzero.resize(1);
+    BevHolt.log_rzero[0] = this->log_rzero[0].initial_value_m;
+
+    return BevHolt.evaluate_mean(spawners, ssbzero);
+  }
+```
+
+## Step 6: Set parameters to pointers
+- For parameters that are set within the function, set them to equal each the value of each pointer,
+  e.g. `= *logit_steep_ptr`
+- For parameters that are passed as input to the `evaluate_mean`, pass in the pointers instead
+
+```{r eval = FALSE}
+   ADrep evaluate_mean_RTMB(ADrep spawners, ADrep ssbzero, ADrep logit_steep, ADrep log_rzero) {
+    fims_popdy::SRBevertonHolt<ad> BevHolt;
+    const ad* spawners_ptr = adptr(spawners);
+    const ad* ssbzero_ptr = adptr(ssbzero);
+    const ad* logit_steep_ptr = adptr(logit_steep);
+    const ad* log_rzero_ptr = adptr(log_rzero);
+
+    BevHolt.logit_steep.resize(1);
+    BevHolt.logit_steep[0] = *logit_steep_ptr;
+    if (BevHolt.logit_steep[0] == 1.0) {
+      Rcpp::warning(
+        "Steepness is subject to a logit transformation. "
+        "Fixing it at 1.0 is not currently possible."
+      );
+    }
+    BevHolt.log_rzero.resize(1);
+    BevHolt.log_rzero[0] = *log_rzero_ptr;
+
+    return BevHolt.evaluate_mean(spawners_ptr, ssbzero_ptr);
+  }
+```
+
+## Step 7: Modify the return statement
+The following code needs to be added to make the return callable from RTMB:
+```{r eval = FALSE}
+int n = x.size();
+ADrep ans(n); 
+ad* Y = adptr(ans); 
+```
+where x is the input variable.
+
+The return function then needs to be set as a loop over all input and the return modified to `ans`:
+```{r eval = FALSE}
+for(int i=0; i<n; i++){
+  Y[i] = module.evaluate(x[i]);
+}
+return ans; 
+```
+
+The completed function for BevertonHolt is:
+```{r eval = FALSE}
+
+  #ifdef TMB_MODEL
+    /**
+   * @brief Evaluate recruitment using the Beverton--Holt stock--recruitment
+   * relationship.
+   * @param spawners Spawning biomass per time step.
+   * @param ssbzero The biomass at unfished levels.
+   */
+   ADrep evaluate_mean_RTMB(ADrep spawners, ADrep ssbzero, ADrep logit_steep, ADrep log_rzero) {
+    fims_popdy::SRBevertonHolt<ad> BevHolt;
+    const ad* spawners_ptr = adptr(spawners);
+    const ad* ssbzero_ptr = adptr(ssbzero);
+    const ad* logit_steep_ptr = adptr(logit_steep);
+    const ad* log_rzero_ptr = adptr(log_rzero);
+
+    BevHolt.logit_steep.resize(1);
+    BevHolt.logit_steep[0] = *logit_steep_ptr;
+    if (BevHolt.logit_steep[0] == 1.0) {
+      Rcpp::warning(
+        "Steepness is subject to a logit transformation. "
+        "Fixing it at 1.0 is not currently possible."
+      );
+    }
+    BevHolt.log_rzero.resize(1);
+    BevHolt.log_rzero[0] = *log_rzero_ptr;
+
+    int n = spawners.size();
+    ADrep ans(n); 
+    ad* Y = adptr(ans); 
+    for(int i=0; i<n; i++){
+        Y[i] = BevHolt.evaluate_mean(spawners_ptr[i], ssbzero_ptr[0]);
+    }
+  
+    return ans; 
+  }
+  #endif
+```
+
+
+## Step 8: Expose to R
+The final step is to expose this new function to R. Navigate to the `fims_module.hpp` file under `src`
+Scroll down to the BevertonHolt interface: `  Rcpp::class_<BevertonHoltRecruitmentInterface>("BevertonHoltRecruitment")`.
+Add the the following to the list of methods:
+```{r eval=FALSE}
+  .method("evaluate_mean_RTMB", &BevertonHoltRecruitmentInterface::evaluate_mean_RTMB)
+```
+
+The final interface code chunk should look like:
+```{r eval = FALSE}
+ Rcpp::class_<BevertonHoltRecruitmentInterface>("BevertonHoltRecruitment")
+      .constructor()
+      .field("logit_steep", &BevertonHoltRecruitmentInterface::logit_steep)
+      .field("log_rzero", &BevertonHoltRecruitmentInterface::log_rzero)
+      .field("log_devs", &BevertonHoltRecruitmentInterface::log_devs)
+      .field("log_r", &BevertonHoltRecruitmentInterface::log_r,
+             "recruitment as a random effect on the natural log scale")
+      .field("nyears", &BevertonHoltRecruitmentInterface::nyears,
+             "Number of years")
+      .field("log_expected_recruitment",
+             &BevertonHoltRecruitmentInterface::log_expected_recruitment,
+             "Log expectation of the recruitment process")
+      .method("get_id", &BevertonHoltRecruitmentInterface::get_id)
+      .method("SetRecruitmentProcessID",
+              &BevertonHoltRecruitmentInterface::SetRecruitmentProcessID,
+              "Set unique ID for recruitment process")
+      .method("evaluate_mean_RTMB", &BevertonHoltRecruitmentInterface::evaluate_mean_RTMB,
+                "Evaluate the mean recruitment using the RTMB framework")
+      .method("evaluate_mean",
+              &BevertonHoltRecruitmentInterface::evaluate_mean);
+```

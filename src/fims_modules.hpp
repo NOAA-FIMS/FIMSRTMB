@@ -220,6 +220,8 @@ RCPP_MODULE(fims) {
       .method("SetRecruitmentProcessID",
               &BevertonHoltRecruitmentInterface::SetRecruitmentProcessID,
               "Set unique ID for recruitment process")
+      .method("evaluate_mean_RTMB", &BevertonHoltRecruitmentInterface::evaluate_mean_RTMB,
+                "Evaluate the mean recruitment using the RTMB framework")
       .method("evaluate_mean",
               &BevertonHoltRecruitmentInterface::evaluate_mean);
 
