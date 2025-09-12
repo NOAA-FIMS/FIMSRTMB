@@ -7,7 +7,9 @@
 
 # Overview
 
-This fork represents an RTMB extension of the NOAA Fisheries Integrated Modeling System (FIMS). Users can access functions within FIMS to build their own custom fisheries models using RTMB. An example is provided in the vignettes, RTMB-demo. Currently, the only function available is logisitic selectivity. Please see detailed instructions below on how to make a FIMS function available for RMTB. Note that this fork does not run a FIMS model, it only accesses FIMS functions. See the [FIMS](https://noaa-fims.github.io/FIMS/) main repo for details on the FIMS R package.
+This fork represents an RTMB extension of the NOAA Fisheries Integrated Modeling System (FIMS). Users can access functions within FIMS to build their own custom fisheries models using RTMB. Examples are provided in the [vignettes](https://noaa-fims.github.io/FIMSRTMB/articles/index.html). Currently, the only two functions available is logisitic selectivity and Beverton-Holt recruitment. Please see detailed instructions in [RTMB_add_module](https://noaa-fims.github.io/FIMSRTMB/articles/RTMB_add_module.html) on how to make a FIMS function available for RMTB. 
+
+**Note that this fork does not run a FIMS model, it only accesses FIMS functions. See the [FIMS](https://noaa-fims.github.io/FIMS/) main repo for details on the FIMS R package.
 
 Users and developers are welcome to submit ideas or questions using the [GitHub Discussion Board](https://github.com/NOAA-FIMS/FIMS/discussions). The [Discussion Board](https://github.com/NOAA-FIMS/FIMS/discussions) is a place for **all** members of the assessment and open-source software community to ask and answer questions, share updates, have open-ended conversations, and follow along on decisions affecting FIMS. If you happen to find a bug, please report it to the issues page in this [FIMSRTMB fork](https://github.com/NOAA-FIMS/FIMSRTMB/issues).
 

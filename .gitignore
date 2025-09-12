@@ -102,8 +102,6 @@ tests/testthat/fixtures/deterministic*.RDS
 
 #vignettes
 inst/doc
-/doc/
 /Meta/
 
 debug.txt
-docs
