@@ -45,6 +45,6 @@
 #' @importFrom Rcpp sourceCpp
 #' @importFrom rlang :=
 #' @importFrom TMB MakeADFun
-#' @useDynLib FIMS, .registration = TRUE
+#' @useDynLib FIMSRTMB, .registration = TRUE
 ## usethis namespace: end
 NULL

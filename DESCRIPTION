@@ -1,4 +1,4 @@
-Package: FIMS.RTMB
+Package: FIMSRTMB
 Title: The Fisheries Integrated Modeling System
 Version: 0.6.2
 Authors@R: c(
@@ -41,7 +41,7 @@ Authors@R: c(
     person(c("James", "N."), "Ianelli", role = "ctb",
            comment = c(ORCID = "0000-0002-7170-8677"))
   )
-Description: The FIMS.RTMB project accesses functions from the 
+Description: The FIMSRTMB project accesses functions from the 
     Fisheries Integrated Modeling System, a next-generation
     framework of stock assessment models, to make them available to RTMB 
     for custom stock assessment model development, assisting fishery managers 
@@ -53,7 +53,7 @@ Description: The FIMS.RTMB project accesses functions from the
     climate effects and other drivers within the marine environment, into
     stock assessment models.
 License: GPL (>= 3) | file LICENSE
-URL: https://github.com/noaa-fims/fims.rtmb, https://noaa-fims.github.io
+URL: https://github.com/noaa-fims/fimsrtmb, https://noaa-fims.github.io
 BugReports: https://github.com/noaa-fims/fims/issues
 Depends:
     R (>= 4.1.0)

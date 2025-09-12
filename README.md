@@ -9,18 +9,18 @@
 
 This fork represents an RTMB extension of the NOAA Fisheries Integrated Modeling System (FIMS). Users can access functions within FIMS to build their own custom fisheries models using RTMB. An example is provided in the vignettes, RTMB-demo. Currently, the only function available is logisitic selectivity. Please see detailed instructions below on how to make a FIMS function available for RMTB. Note that this fork does not run a FIMS model, it only accesses FIMS functions. See the [FIMS](https://noaa-fims.github.io/FIMS/) main repo for details on the FIMS R package.
 
-Users and developers are welcome to submit ideas or questions using the [GitHub Discussion Board](https://github.com/NOAA-FIMS/FIMS/discussions). The [Discussion Board](https://github.com/NOAA-FIMS/FIMS/discussions) is a place for **all** members of the assessment and open-source software community to ask and answer questions, share updates, have open-ended conversations, and follow along on decisions affecting FIMS. If you happen to find a bug, please report it to the issues page in this [FIMS.RTMB fork](https://github.com/NOAA-FIMS/FIMS.RTMB/issues).
+Users and developers are welcome to submit ideas or questions using the [GitHub Discussion Board](https://github.com/NOAA-FIMS/FIMS/discussions). The [Discussion Board](https://github.com/NOAA-FIMS/FIMS/discussions) is a place for **all** members of the assessment and open-source software community to ask and answer questions, share updates, have open-ended conversations, and follow along on decisions affecting FIMS. If you happen to find a bug, please report it to the issues page in this [FIMSRTMB fork](https://github.com/NOAA-FIMS/FIMSRTMB/issues).
 
-## Installing FIMS.RTMB
+## Installing FIMSRTMB
 
-Install the latest version of FIMS.RTMB from github:
+Install the latest version of FIMSRTMB from github:
 ```
-remotes::install_github("NOAA-FIMS/FIMS.RTMB)
+remotes::install_github("NOAA-FIMS/FIMSRTMB)
 ```
 
 ## Getting Help
 
-Please report bugs along with a minimal reproducible example on the FIMS [GitHub Issues page](https://github.com/NOAA-FIMS/FIMS.RTMB/issues).
+Please report bugs along with a minimal reproducible example on the FIMS [GitHub Issues page](https://github.com/NOAA-FIMS/FIMSRTMB/issues).
 
 ## Code of Conduct
 

@@ -15,8 +15,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## FIMS-RTMB Example
 This demo uses a FIMS module to set up an RTMB model.
 ```{r memory, warning=FALSE, message=FALSE}
-library(FIMS)
-FIMS:::setup_RTMB()
+library(FIMSRTMB)
+FIMSRTMB:::setup_RTMB()
 library(ggplot2)
 
 # clear memory
@@ -59,14 +59,14 @@ par <- list(inflection_point = 10, slope = 0.2,
 
 mod <- function(par){
     getAll(par, dat)
-    sdy <- exp(ln_sdy)
+    sdy <- exp(par$ln_sdy)
     mean_selectivity <- logistic$evaluate_RTMB(
-        x = advector(dat$x),
+        x = advector(x),
         inflection_point = advector(par$inflection_point),
         slope = advector(par$slope)
     )
     nll <- 0
-    for(i in x){
+    for(i in seq_along(x)){
         nll <- nll - RTMB::dnorm(y[i], mean_selectivity[i], sdy, TRUE)
     }
     return(nll)

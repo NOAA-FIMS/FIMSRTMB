@@ -33,7 +33,7 @@ Note in other modules, this function will just be called `evaluate()`
 This function needs to be copied and the copy then modified to be callable from RTMB.
 
 ```{r eval=FALSE}
- virtual double evaluate_mean(double spawners, double ssbzero) {
+ virtual double evaluate_mean(double spawners, double phi_0) {
     fims_popdy::SRBevertonHolt<double> BevHolt;
     BevHolt.logit_steep.resize(1);
     BevHolt.logit_steep[0] = this->logit_steep[0].initial_value_m;
@@ -46,7 +46,7 @@ This function needs to be copied and the copy then modified to be callable from 
     BevHolt.log_rzero.resize(1);
     BevHolt.log_rzero[0] = this->log_rzero[0].initial_value_m;
 
-    return BevHolt.evaluate_mean(spawners, ssbzero);
+    return BevHolt.evaluate_mean(spawners, phi_0);
   }
   ```
 
@@ -66,9 +66,9 @@ This will ensure that this function is only compiled when TMB is being used.
    * @brief Evaluate recruitment using the Beverton--Holt stock--recruitment
    * relationship.
    * @param spawners Spawning biomass per time step.
-   * @param ssbzero The biomass at unfished levels.
+   * @param phi_0 The biomass at unfished levels.
    */
-   ADrep evaluate_mean_RTMB(double spawners, double ssbzero) {
+   ADrep evaluate_mean_RTMB(double spawners, double phi_0) {
     fims_popdy::SRBevertonHolt<double> BevHolt;
     BevHolt.logit_steep.resize(1);
     BevHolt.logit_steep[0] = this->logit_steep[0].initial_value_m;
@@ -81,7 +81,7 @@ This will ensure that this function is only compiled when TMB is being used.
     BevHolt.log_rzero.resize(1);
     BevHolt.log_rzero[0] = this->log_rzero[0].initial_value_m;
 
-    return BevHolt.evaluate_mean(spawners, ssbzero);
+    return BevHolt.evaluate_mean(spawners, phi_0);
   }
   #endif
   ```
@@ -92,7 +92,7 @@ This will ensure that this function is only compiled when TMB is being used.
     `fims_popdy::SRBevertonHolt<double>` to `fims_popdy::SRBevertonHolt<ad>`
 
   ```{r eval=FALSE}
-   ADrep evaluate_mean_RTMB(ADrep spawners, ADrep ssbzero) {
+   ADrep evaluate_mean_RTMB(ADrep spawners, ADrep phi_0) {
     fims_popdy::SRBevertonHolt<ad> BevHolt;
     BevHolt.logit_steep.resize(1);
     BevHolt.logit_steep[0] = this->logit_steep[0].initial_value_m;
@@ -105,7 +105,7 @@ This will ensure that this function is only compiled when TMB is being used.
     BevHolt.log_rzero.resize(1);
     BevHolt.log_rzero[0] = this->log_rzero[0].initial_value_m;
 
-    return BevHolt.evaluate_mean(spawners, ssbzero);
+    return BevHolt.evaluate_mean(spawners, phi_0);
   }
   ```
 
@@ -117,10 +117,10 @@ are not specified in the input, e.g. `logit_steep`, add them as parameters to th
 input and set up new pointers for them:
 
 ```{r eval = FALSE}
-   ADrep evaluate_mean_RTMB(ADrep spawners, ADrep ssbzero, ADrep logit_steep, ADrep log_rzero) {
+   ADrep evaluate_mean_RTMB(ADrep spawners, ADrep phi_0, ADrep logit_steep, ADrep log_rzero) {
     fims_popdy::SRBevertonHolt<ad> BevHolt;
     const ad* spawners_ptr = adptr(spawners);
-    const ad* ssbzero_ptr = adptr(ssbzero);
+    const ad* phi_0_ptr = adptr(phi_0);
     const ad* logit_steep_ptr = adptr(logit_steep);
     const ad* log_rzero_ptr = adptr(log_rzero);
     
@@ -135,7 +135,7 @@ input and set up new pointers for them:
     BevHolt.log_rzero.resize(1);
     BevHolt.log_rzero[0] = this->log_rzero[0].initial_value_m;
 
-    return BevHolt.evaluate_mean(spawners, ssbzero);
+    return BevHolt.evaluate_mean(spawners, phi_0);
   }
 ```
 
@@ -145,10 +145,10 @@ input and set up new pointers for them:
 - For parameters that are passed as input to the `evaluate_mean`, pass in the pointers instead
 
 ```{r eval = FALSE}
-   ADrep evaluate_mean_RTMB(ADrep spawners, ADrep ssbzero, ADrep logit_steep, ADrep log_rzero) {
+   ADrep evaluate_mean_RTMB(ADrep spawners, ADrep phi_0, ADrep logit_steep, ADrep log_rzero) {
     fims_popdy::SRBevertonHolt<ad> BevHolt;
     const ad* spawners_ptr = adptr(spawners);
-    const ad* ssbzero_ptr = adptr(ssbzero);
+    const ad* phi_0_ptr = adptr(phi_0);
     const ad* logit_steep_ptr = adptr(logit_steep);
     const ad* log_rzero_ptr = adptr(log_rzero);
 
@@ -163,7 +163,7 @@ input and set up new pointers for them:
     BevHolt.log_rzero.resize(1);
     BevHolt.log_rzero[0] = *log_rzero_ptr;
 
-    return BevHolt.evaluate_mean(spawners_ptr, ssbzero_ptr);
+    return BevHolt.evaluate_mean(spawners_ptr, phi_0_ptr);
   }
 ```
 
@@ -192,12 +192,12 @@ The completed function for BevertonHolt is:
    * @brief Evaluate recruitment using the Beverton--Holt stock--recruitment
    * relationship.
    * @param spawners Spawning biomass per time step.
-   * @param ssbzero The biomass at unfished levels.
+   * @param phi_0 The biomass at unfished levels.
    */
-   ADrep evaluate_mean_RTMB(ADrep spawners, ADrep ssbzero, ADrep logit_steep, ADrep log_rzero) {
+   ADrep evaluate_mean_RTMB(ADrep spawners, ADrep phi_0, ADrep logit_steep, ADrep log_rzero) {
     fims_popdy::SRBevertonHolt<ad> BevHolt;
     const ad* spawners_ptr = adptr(spawners);
-    const ad* ssbzero_ptr = adptr(ssbzero);
+    const ad* phi_0_ptr = adptr(phi_0);
     const ad* logit_steep_ptr = adptr(logit_steep);
     const ad* log_rzero_ptr = adptr(log_rzero);
 
@@ -216,7 +216,7 @@ The completed function for BevertonHolt is:
     ADrep ans(n); 
     ad* Y = adptr(ans); 
     for(int i=0; i<n; i++){
-        Y[i] = BevHolt.evaluate_mean(spawners_ptr[i], ssbzero_ptr[0]);
+        Y[i] = BevHolt.evaluate_mean(spawners_ptr[i], phi_0_ptr[0]);
     }
   
     return ans; 
@@ -255,4 +255,83 @@ The final interface code chunk should look like:
                 "Evaluate the mean recruitment using the RTMB framework")
       .method("evaluate_mean",
               &BevertonHoltRecruitmentInterface::evaluate_mean);
+```
+
+
+## Step 9: Use function in RTMB Modeling
+Setup the RTMB environment:
+```{r memory, warning=FALSE, message=FALSE}
+library(FIMSRTMB)
+FIMSRTMB:::setup_RTMB()
+library(ggplot2)
+
+# clear memory
+clear()
+```
+
+### Set up a recruitment module using FIMS
+
+```{r recruitment-module}
+recruitment <- methods::new(BevertonHoltRecruitment)
+recruitment$show()
+```
+
+
+### Simulate data using the FIMS module
+```{r simulate}
+# set the two parameters from the recruitment module:
+r0 <- 1e+06; h <- 0.75; phi_0 <- 0.1
+recruitment$log_rzero[1]$value <- log(r0)
+recruitment$logit_steep[1]$value <- FIMSRTMB::logit(0.2, 1.0, 0.75);
+
+#spawners from FIMS comparison test data
+X <- c(9317.537, 9388.807, 9356.490, 9325.130, 8950.209, 8720.467, 8659.642, 8613.245, 7689.096,
+        7434.469, 6989.143, 6556.460, 6105.419, 5831.374, 5350.386, 4978.918, 4758.962, 4159.215,
+        3842.397, 3410.286, 3047.454, 2564.075, 2615.329, 2348.742, 2130.985, 1932.811, 1900.979,
+        1789.534, 1598.782, 1719.572, 1648.269)
+Y <- mu <- X * 0
+sdy <- 7500 #observation error around bevertonholt
+
+set.seed(123)
+for(i in seq_along(X)){
+    # evaluate returns the bevertonholt function given the parameters and x
+    mu[i] <- recruitment$evaluate_mean(X[i], phi_0)
+    # simulate random noise around the mean
+    Y[i] <- rnorm(1, mu[i], sdy)
+}
+
+df <- data.frame(x = X, y = Y)
+ggplot(df, aes(x = x, y = y)) + geom_point()
+```
+
+
+### Set up RTMB model
+```{r model}
+dat <- list(y = Y, x = X)
+par <- list(log_rzero = log(max(Y)), logit_steep = 0,
+            ln_sdy = log(1000))
+
+mod <- function(par){
+    getAll(par, dat)
+    sdy <- exp(par$ln_sdy)
+    mean_recruitment <- recruitment$evaluate_mean_RTMB(
+        spawners = advector(dat$x), phi_0 = advector(0.1),
+        logit_steep = advector(par$logit_steep),
+        log_rzero = advector(par$log_rzero)
+    )
+    nll <- 0
+    for(i in seq_along(x)){
+        nll <- nll - RTMB::dnorm(y[i], mean_recruitment[i], sdy, TRUE)
+    }
+    return(nll)
+}
+```
+
+### Generate TMB object and optimize
+```{r fit}
+obj <- RTMB::MakeADFun(mod, par)
+opt <- nlminb(obj$par, obj$fn, obj$gr)
+opt$par
+r0; exp(opt$par["log_rzero"])
+h; FIMSRTMB::inv_logit(0.2, 1.0, opt$par["logit_steep"])
 ```
