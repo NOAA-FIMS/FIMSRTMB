@@ -1,0 +1,10 @@
+pandoc: 3.1.11
+pkgdown: 2.1.3
+pkgdown_sha: ~
+articles:
+  RTMB_add_module: RTMB_add_module.html
+  RTMB_demo: RTMB_demo.html
+last_built: 2025-09-16T22:58Z
+urls:
+  reference: https://NOAA-FIMS.github.io/FIMSRTMB/reference
+  article: https://NOAA-FIMS.github.io/FIMSRTMB/articles
