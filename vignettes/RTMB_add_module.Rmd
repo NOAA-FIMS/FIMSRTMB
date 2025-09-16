@@ -50,7 +50,7 @@ This function needs to be copied and the copy then modified to be callable from 
   }
 ```
 
-  ## Step 3: Create a copy of this function. 
+## Step 3: Create a copy of this function. 
   
   Rename it to `evaluate_mean_RTMB` and 
   modify the type from `virtual double` to `ADrep`. Add documentation and 
@@ -88,7 +88,7 @@ This will ensure that this function is only compiled when TMB is being used.
   #endif
 ```
 
-  ## Step 4: Modify types:
+## Step 4: Modify types:
 
   - Modify the types of the input parameters from `double` to `ADrep`
   - Modify the type within the class declaration function from `double` to `ad`, e.g.
