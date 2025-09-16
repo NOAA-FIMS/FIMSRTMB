@@ -50,7 +50,9 @@ This function needs to be copied and the copy then modified to be callable from 
   }
 ```
 
-  ## Step 3: Create a copy of this function. Rename it to `evaluate_mean_RTMB` and 
+  ## Step 3: Create a copy of this function. 
+  
+  Rename it to `evaluate_mean_RTMB` and 
   modify the type from `virtual double` to `ADrep`. Add documentation and 
   wrap the entire function in:
   ```{r eval=FALSE}
@@ -87,6 +89,7 @@ This will ensure that this function is only compiled when TMB is being used.
 ```
 
   ## Step 4: Modify types:
+
   - Modify the types of the input parameters from `double` to `ADrep`
   - Modify the type within the class declaration function from `double` to `ad`, e.g.
     `fims_popdy::SRBevertonHolt<double>` to `fims_popdy::SRBevertonHolt<ad>`
@@ -111,6 +114,7 @@ This will ensure that this function is only compiled when TMB is being used.
 
 
 ## Step 5: Add new pointers for each parameter
+
 For each input parameter, set up a new pointer using `const ad*` and wrap the 
 input parameter in `adptr()`. If there are additional parameters in the model that
 are not specified in the input, e.g. `logit_steep`, add them as parameters to the 
@@ -140,7 +144,8 @@ input and set up new pointers for them:
 ```
 
 ## Step 6: Set parameters to pointers
-- For parameters that are set within the function, set them to equal each the value of each pointer,
+
+- For parameters that are set within the function, set them to equalthe value of each pointer,
   e.g. `= *logit_steep_ptr`
 - For parameters that are passed as input to the `evaluate_mean`, pass in the pointers instead
 
@@ -168,6 +173,7 @@ input and set up new pointers for them:
 ```
 
 ## Step 7: Modify the return statement
+
 The following code needs to be added to make the return callable from RTMB:
 ```{r eval = FALSE}
 int n = x.size();
@@ -226,6 +232,7 @@ The completed function for BevertonHolt is:
 
 
 ## Step 8: Expose to R
+
 The final step is to expose this new function to R. Navigate to the `fims_module.hpp` file under `src`
 Scroll down to the BevertonHolt interface: `  Rcpp::class_<BevertonHoltRecruitmentInterface>("BevertonHoltRecruitment")`.
 Add the the following to the list of methods:
@@ -259,6 +266,7 @@ The final interface code chunk should look like:
 
 
 ## Step 9: Use function in RTMB Modeling
+
 Setup the RTMB environment:
 ```{r memory, warning=FALSE, message=FALSE}
 library(FIMSRTMB)
@@ -306,6 +314,7 @@ ggplot(df, aes(x = x, y = y)) + geom_point()
 
 
 ### Set up RTMB model
+
 ```{r model}
 dat <- list(y = Y, x = X)
 par <- list(log_rzero = log(max(Y)), logit_steep = 0,
@@ -328,6 +337,7 @@ mod <- function(par){
 ```
 
 ### Generate TMB object and optimize
+
 ```{r fit}
 obj <- RTMB::MakeADFun(mod, par)
 opt <- nlminb(obj$par, obj$fn, obj$gr)
