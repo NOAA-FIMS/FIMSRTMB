@@ -76,7 +76,7 @@
 <code>inst/include/interface/rcpp/rcpp_objects</code>. Here, Rcpp
 interface files are listed by category, e.g. <code>rcpp_growth</code>,
 <code>rcpp_selectivity</code>, etc. This vignette will walk through
-modifying the BevertonHolt recruitment function in
+modifying the Beverton-Holt recruitment function in
 <code>rcpp_recruitment.hpp</code> to make it callable from RTMB.</p>
 <p>At the top of the file, add the following if it isn’t already
 included:</p>
@@ -84,13 +84,13 @@ included:</p>
 <code class="sourceCode R"><span><span class="co">#include "../../RTMB.h"</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="step-2-locate-the-bevertonholt-recruitment-evaluate_mean-function-in-rcpp_recruitment">Step 2 Locate the BevertonHolt recruitment
+<h2 id="step-2-locate-the-beverton-holt-recruitment-evaluate_mean-function-in-rcpp_recruitment">Step 2 Locate the Beverton-Holt recruitment
 <code>evaluate_mean</code> function in
-<code>rcpp_recruitment</code><a class="anchor" aria-label="anchor" href="#step-2-locate-the-bevertonholt-recruitment-evaluate_mean-function-in-rcpp_recruitment"></a>
+<code>rcpp_recruitment</code><a class="anchor" aria-label="anchor" href="#step-2-locate-the-beverton-holt-recruitment-evaluate_mean-function-in-rcpp_recruitment"></a>
 </h2>
 <p>Find the <code>BevertonHoltRecruitmentInterface</code>. Within this
 class, locate the <code>evaluate_mean</code> function, this is where the
-BevertonHolt C++ function is called. Note in other modules, this
+Beverton-Holt C++ function is called. Note in other modules, this
 function will just be called <code>evaluate()</code> This function needs
 to be copied and the copy then modified to be callable from RTMB.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a> virtual double <span class="fu">evaluate_mean</span>(double spawners, double phi_0) {</span>
@@ -108,7 +108,10 @@ to be copied and the copy then modified to be callable from RTMB.</p>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a></span>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    return <span class="fu">BevHolt.evaluate_mean</span>(spawners, phi_0);</span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>  }</span></code></pre></div>
-<p>## Step 3: Create a copy of this function.</p>
+</div>
+<div class="section level2">
+<h2 id="step-3-create-a-copy-of-this-function-">Step 3: Create a copy of this function.<a class="anchor" aria-label="anchor" href="#step-3-create-a-copy-of-this-function-"></a>
+</h2>
 <p>Rename it to <code>evaluate_mean_RTMB</code> and modify the type from
 <code>virtual double</code> to <code>ADrep</code>. Add documentation and
 wrap the entire function in:</p>
@@ -141,7 +144,10 @@ being used.</p>
 <span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>    return <span class="fu">BevHolt.evaluate_mean</span>(spawners, phi_0);</span>
 <span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a>  }</span>
 <span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a>  <span class="co">#endif</span></span></code></pre></div>
-<p>## Step 4: Modify types:</p>
+</div>
+<div class="section level2">
+<h2 id="step-4-modify-types">Step 4: Modify types:<a class="anchor" aria-label="anchor" href="#step-4-modify-types"></a>
+</h2>
 <ul>
 <li>Modify the types of the input parameters from <code>double</code> to
 <code>ADrep</code>
@@ -201,9 +207,8 @@ them as parameters to the input and set up new pointers for them:</p>
 <h2 id="step-6-set-parameters-to-pointers">Step 6: Set parameters to pointers<a class="anchor" aria-label="anchor" href="#step-6-set-parameters-to-pointers"></a>
 </h2>
 <ul>
-<li>For parameters that are set within the function, set them to
-equalthe value of each pointer,
-e.g. <code>= *logit_steep_ptr</code>
+<li>For parameters that are set within the function, set them to equal
+the value of each pointer, e.g. <code>= *logit_steep_ptr</code>
 </li>
 <li>For parameters that are passed as input to the
 <code>evaluate_mean</code>, pass in the pointers instead</li>
@@ -244,7 +249,7 @@ the return modified to <code>ans</code>:</p>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  Y[i] <span class="ot">=</span> <span class="fu">module.evaluate</span>(x[i]);</span>
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>}</span>
 <span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>return ans; </span></code></pre></div>
-<p>The completed function for BevertonHolt is:</p>
+<p>The completed function for Beverton-Holt is:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>  <span class="co">#ifdef TMB_MODEL</span></span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>    <span class="sc">/</span><span class="er">**</span></span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>   <span class="er">*</span> <span class="er">@</span>brief Evaluate recruitment using the Beverton<span class="sc">--</span>Holt stock<span class="sc">--</span>recruitment</span>
@@ -319,7 +324,7 @@ Add the the following to the list of methods:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/noaa-fims/fimsrtmb" class="external-link">FIMSRTMB</a></span><span class="op">)</span></span>
 <span><span class="fu">FIMSRTMB</span><span class="fu">:::</span><span class="fu">setup_RTMB</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Global pointer successfully set: 0x7fac0ad0aee0</span></span></code></pre>
+<pre><code><span><span class="co">## Global pointer successfully set: 0x7fd81610aee0</span></span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
@@ -333,7 +338,7 @@ Add the the following to the list of methods:</p>
 <span><span class="va">recruitment</span><span class="op">$</span><span class="fu">show</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Reference class object of class "Rcpp_BevertonHoltRecruitment"</span></span>
 <span><span class="co">## Field "log_devs":</span></span>
-<span><span class="co">## 0x55c58a650a50</span></span>
+<span><span class="co">## 0x556b5f626d30</span></span>
 <span><span class="co">## {"id": 3,</span></span>
 <span><span class="co">## "value": 0,</span></span>
 <span><span class="co">## "estimated_value": 0,</span></span>
@@ -341,7 +346,7 @@ Add the the following to the list of methods:</p>
 <span><span class="co">## "max": "Infinity",</span></span>
 <span><span class="co">## "estimation type is": "constant"</span></span>
 <span><span class="co">## }  Field "log_expected_recruitment":</span></span>
-<span><span class="co">## 0x55c58be9aaa0</span></span>
+<span><span class="co">## 0x556b698bc510</span></span>
 <span><span class="co">## {"id": 5,</span></span>
 <span><span class="co">## "value": 0,</span></span>
 <span><span class="co">## "estimated_value": 0,</span></span>
@@ -349,7 +354,7 @@ Add the the following to the list of methods:</p>
 <span><span class="co">## "max": "Infinity",</span></span>
 <span><span class="co">## "estimation type is": "constant"</span></span>
 <span><span class="co">## }  Field "log_r":</span></span>
-<span><span class="co">## 0x55c5916c9f90</span></span>
+<span><span class="co">## 0x556b697b6fa0</span></span>
 <span><span class="co">## {"id": 4,</span></span>
 <span><span class="co">## "value": 0,</span></span>
 <span><span class="co">## "estimated_value": 0,</span></span>
@@ -357,7 +362,7 @@ Add the the following to the list of methods:</p>
 <span><span class="co">## "max": "Infinity",</span></span>
 <span><span class="co">## "estimation type is": "constant"</span></span>
 <span><span class="co">## }  Field "log_rzero":</span></span>
-<span><span class="co">## 0x55c5973747d0</span></span>
+<span><span class="co">## 0x556b65f331b0</span></span>
 <span><span class="co">## {"id": 2,</span></span>
 <span><span class="co">## "value": 0,</span></span>
 <span><span class="co">## "estimated_value": 0,</span></span>
@@ -365,7 +370,7 @@ Add the the following to the list of methods:</p>
 <span><span class="co">## "max": "Infinity",</span></span>
 <span><span class="co">## "estimation type is": "constant"</span></span>
 <span><span class="co">## }  Field "logit_steep":</span></span>
-<span><span class="co">## 0x55c5910e50f0</span></span>
+<span><span class="co">## 0x556b67dc6720</span></span>
 <span><span class="co">## {"id": 1,</span></span>
 <span><span class="co">## "value": 0,</span></span>
 <span><span class="co">## "estimated_value": 0,</span></span>
@@ -373,7 +378,7 @@ Add the the following to the list of methods:</p>
 <span><span class="co">## "max": "Infinity",</span></span>
 <span><span class="co">## "estimation type is": "constant"</span></span>
 <span><span class="co">## }  Field "nyears":</span></span>
-<span><span class="co">## C++ object &lt;0x55c59d9685a0&gt; of class 'SharedInt' &lt;0x55c590b4c5c0&gt;</span></span></code></pre>
+<span><span class="co">## C++ object &lt;0x556b6a53f630&gt; of class 'SharedInt' &lt;0x556b5e5b0340&gt;</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="simulate-data-using-the-fims-module">Simulate data using the FIMS module<a class="anchor" aria-label="anchor" href="#simulate-data-using-the-fims-module"></a>
