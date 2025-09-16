@@ -18,17 +18,17 @@ knitr::opts_chunk$set(echo = TRUE)
 The rcpp directory is located in `inst/include/interface/rcpp/rcpp_objects`. 
 Here, Rcpp interface files are listed by category, e.g. `rcpp_growth`, 
 `rcpp_selectivity`, etc. This vignette will walk through modifying the 
-BevertonHolt recruitment function in `rcpp_recruitment.hpp` to make it callable from RTMB.
+Beverton-Holt recruitment function in `rcpp_recruitment.hpp` to make it callable from RTMB.
 
 At the top of the file, add the following if it isn't already included:
 ```{r eval = FALSE}
 #include "../../RTMB.h"
 ```
 
-## Step 2 Locate the BevertonHolt recruitment `evaluate_mean` function in `rcpp_recruitment`
+## Step 2 Locate the Beverton-Holt recruitment `evaluate_mean` function in `rcpp_recruitment`
 
 Find the `BevertonHoltRecruitmentInterface`. Within this class, locate the 
-`evaluate_mean` function, this is where the BevertonHolt C++ function is called. 
+`evaluate_mean` function, this is where the Beverton-Holt C++ function is called. 
 Note in other modules, this function will just be called `evaluate()`
 This function needs to be copied and the copy then modified to be callable from RTMB.
 
@@ -145,7 +145,7 @@ input and set up new pointers for them:
 
 ## Step 6: Set parameters to pointers
 
-- For parameters that are set within the function, set them to equalthe value of each pointer,
+- For parameters that are set within the function, set them to equal the value of each pointer,
   e.g. `= *logit_steep_ptr`
 - For parameters that are passed as input to the `evaluate_mean`, pass in the pointers instead
 
@@ -190,7 +190,7 @@ for(int i=0; i<n; i++){
 return ans; 
 ```
 
-The completed function for BevertonHolt is:
+The completed function for Beverton-Holt is:
 ```{r eval = FALSE}
 
   #ifdef TMB_MODEL
