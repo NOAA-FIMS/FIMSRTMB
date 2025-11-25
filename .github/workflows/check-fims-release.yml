@@ -70,23 +70,40 @@ jobs:
             const issueTypes = repoResult.repository.owner.issueTypes?.nodes || [];
             const taskType = issueTypes.find(t => t.name === 'Task');
             
-            // Get label IDs
-            const { data: autoUpdateLabel } = await github.rest.issues.getLabel({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: 'auto-update'
-            });
+            // Get label IDs (labels are expected to exist in the repository)
+            let labelIds = [];
+            try {
+              const { data: autoUpdateLabel } = await github.rest.issues.getLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'auto-update'
+              });
+              labelIds.push(autoUpdateLabel.node_id);
+            } catch (e) {
+              console.log('Warning: auto-update label not found');
+            }
             
-            const { data: refactorLabel } = await github.rest.issues.getLabel({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: 'kind: refactor'
-            });
+            try {
+              const { data: refactorLabel } = await github.rest.issues.getLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'kind: refactor'
+              });
+              labelIds.push(refactorLabel.node_id);
+            } catch (e) {
+              console.log('Warning: kind: refactor label not found');
+            }
             
             // Get assignee ID
-            const { data: assignee } = await github.rest.users.getByUsername({
-              username: 'Andrea-Havron-NOAA'
-            });
+            let assigneeIds = [];
+            try {
+              const { data: assignee } = await github.rest.users.getByUsername({
+                username: 'Andrea-Havron-NOAA'
+              });
+              assigneeIds.push(assignee.node_id);
+            } catch (e) {
+              console.log('Warning: assignee Andrea-Havron-NOAA not found');
+            }
             
             // Create issue using GraphQL to support issue types
             const createIssueMutation = `
@@ -105,10 +122,18 @@ jobs:
             const input = {
               repositoryId: repositoryId,
               title: issueTitle,
-              body: issueBody,
-              assigneeIds: [assignee.node_id],
-              labelIds: [autoUpdateLabel.node_id, refactorLabel.node_id]
+              body: issueBody
             };
+            
+            // Add assignees if found
+            if (assigneeIds.length > 0) {
+              input.assigneeIds = assigneeIds;
+            }
+            
+            // Add labels if found
+            if (labelIds.length > 0) {
+              input.labelIds = labelIds;
+            }
             
             // Add issue type if "Task" type is available
             if (taskType) {
