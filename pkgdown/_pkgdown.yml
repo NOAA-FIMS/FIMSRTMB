@@ -9,7 +9,7 @@ home:
 authors:
   FIMS implementation team:
     href: https://github.com/orgs/NOAA-FIMS/teams/fims
-    html: <img src='https://github.com/NOAA-FIMS/noaa-fims.github.io/blob/main/images/FIMS_hexlogo.png' alt='FIMS' width='72' />
+    html: <img src='https://noaa-fims.github.io/images/FIMS_hexlogo.png' alt='FIMS' width='72' />
 
 template:
   bootstrap: 5
@@ -19,6 +19,12 @@ template:
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+articles:
+- title: Fisheries Integrated Modeling System (FIMS)
+  contents:
+  - RTMB_demo
+  - RTMB_add_module
 
 reference:
 - title: Data
@@ -58,7 +64,7 @@ reference:
 news:
   releases:
   - text: "Latest release"
-    href: https://github.com/NOAA-FIMS/FIMS/releases/latest
+    href: https://github.com/NOAA-FIMS/FIMSRTMB/releases/latest
 
 navbar:
   structure:
@@ -66,30 +72,15 @@ navbar:
       - reference
       - articles
       - news
-      - reports
     right:
       - website
       - github
       - search
   components:
-    reference:
-      text: reference
-      menu:
-        - text: r/roxygen
-          href: reference/index.html
-        - text: c++/doxygen
-          href: https://noaa-fims.github.io/FIMS/doxygen/index.html
-    articles:
-      text: articles
-      menu:
-        - text: RTMB demo
-          href: articles/RTMB_demo.html
-        - text: RTMB add module
-          href: articles/RTMB_add_module.html
     website:
       text: fims website
       href: https://noaa-fims.github.io/
     github:
       icon: fa-brands fa-github fa-lg
-      href: https://github.com/noaa-fims/fimsrtmb
+      href: https://github.com/NOAA-FIMS/FIMSRTMB/
       aria-label: GitHub repository for FIMSRTMB
