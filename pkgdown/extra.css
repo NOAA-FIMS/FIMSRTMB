@@ -206,7 +206,6 @@ html, body {
     margin-top: auto !important;     /* Auto margin pushes it to the center */
     margin-bottom: auto !important; /* Auto margin pushes it to the center */
     vertical-align: middle !important; /* Keep as a fallback */
-    vertical-align: middle !important;
     width: 90px !important;
     max-width: 80px !important;
     min-width: 80px !important;

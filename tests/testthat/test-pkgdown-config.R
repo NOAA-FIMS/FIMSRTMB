@@ -14,6 +14,8 @@ test_that("pkgdown site uses FIMS styling hooks", {
   expect_true(any(grepl("^navbar:$", config_lines)))
   expect_true(any(grepl("aria-label: GitHub repository for FIMSRTMB", config_lines, fixed = TRUE)))
 
+  expect_true(any(grepl("href: https://github.com/NOAA-FIMS/FIMSRTMB/", config_lines, fixed = TRUE)))
+
   expect_true(any(grepl(".navbar {", css_lines, fixed = TRUE)))
   expect_true(any(grepl(".navlogo {", css_lines, fixed = TRUE)))
   expect_true(any(grepl("footer {", css_lines, fixed = TRUE)))
