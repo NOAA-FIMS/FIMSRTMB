@@ -6,22 +6,29 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Modify a FIMS module to make it callable from RTMB • FIMSRTMB</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Modify a FIMS module to make it callable from RTMB">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <img class="navlogo" src="https://noaa-fims.github.io/images/FIMS_logo3.png" alt="FIMS logo with a fish" width="60" align="left"><a class="navbar-brand me-2" href="../index.html">FIMSRTMB</a>
 
-    <a class="navbar-brand me-2" href="../index.html">FIMSRTMB</a>
-
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,23 +37,36 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="active nav-item"><a class="nav-link" href="../articles/index.html">Articles</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-reference" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">reference</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-reference">
+<li><a class="dropdown-item" href="../reference/index.html">r/roxygen</a></li>
+    <li><a class="external-link dropdown-item" href="https://noaa-fims.github.io/FIMS/doxygen/index.html">c++/doxygen</a></li>
+  </ul>
+</li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/RTMB_demo.html">RTMB demo</a></li>
+    <li><a class="dropdown-item" href="../articles/RTMB_add_module.html">RTMB add module</a></li>
+  </ul>
+</li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-news" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">News</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-news">
 <li><h6 class="dropdown-header" data-toc-skip>Releases</h6></li>
-    <li><a class="external-link dropdown-item" href="https://github.com/NOAA-FIMS/FIMS/releases/tag/v0.1.0">Version 0.1.0</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/NOAA-FIMS/FIMS/releases/latest">Latest release</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="../news/index.html">Changelog</a></li>
   </ul>
 </li>
       </ul>
 <ul class="navbar-nav">
+<li class="nav-item"><a class="external-link nav-link" href="https://noaa-fims.github.io/">fims website</a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/noaa-fims/fimsrtmb" aria-label="GitHub repository for FIMSRTMB"><span class="fa fa-brands fa-github fa-lg"></span></a></li>
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/noaa-fims/fims/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -59,8 +79,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>Modify a FIMS module to make it callable from RTMB</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Modify a FIMS module to make it callable from RTMB</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/noaa-fims/fims/blob/main/vignettes/RTMB_add_module.Rmd" class="external-link"><code>vignettes/RTMB_add_module.Rmd</code></a></small>
@@ -324,12 +343,12 @@ Add the the following to the list of methods:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/noaa-fims/fimsrtmb" class="external-link">FIMSRTMB</a></span><span class="op">)</span></span>
 <span><span class="fu">FIMSRTMB</span><span class="fu">:::</span><span class="fu">setup_RTMB</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Global pointer successfully set: 0x7fd81610aee0</span></span></code></pre>
+<pre><code><span><span class="co">## Global pointer successfully set: 0x7fc0ab5f48a0</span></span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># clear memory</span></span>
-<span><span class="fu">clear</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/Cpp_functions.html">clear</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="set-up-a-recruitment-module-using-fims">Set up a recruitment module using FIMS<a class="anchor" aria-label="anchor" href="#set-up-a-recruitment-module-using-fims"></a>
 </h3>
@@ -338,47 +357,37 @@ Add the the following to the list of methods:</p>
 <span><span class="va">recruitment</span><span class="op">$</span><span class="fu">show</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Reference class object of class "Rcpp_BevertonHoltRecruitment"</span></span>
 <span><span class="co">## Field "log_devs":</span></span>
-<span><span class="co">## 0x556b5f626d30</span></span>
+<span><span class="co">## 0x562cb58d4720</span></span>
 <span><span class="co">## {"id": 3,</span></span>
 <span><span class="co">## "value": 0,</span></span>
 <span><span class="co">## "estimated_value": 0,</span></span>
-<span><span class="co">## "min": "-Infinity",</span></span>
-<span><span class="co">## "max": "Infinity",</span></span>
-<span><span class="co">## "estimation type is": "constant"</span></span>
+<span><span class="co">## "estimation_type": "constant"</span></span>
 <span><span class="co">## }  Field "log_expected_recruitment":</span></span>
-<span><span class="co">## 0x556b698bc510</span></span>
+<span><span class="co">## 0x562cb18cafb0</span></span>
 <span><span class="co">## {"id": 5,</span></span>
 <span><span class="co">## "value": 0,</span></span>
 <span><span class="co">## "estimated_value": 0,</span></span>
-<span><span class="co">## "min": "-Infinity",</span></span>
-<span><span class="co">## "max": "Infinity",</span></span>
-<span><span class="co">## "estimation type is": "constant"</span></span>
+<span><span class="co">## "estimation_type": "constant"</span></span>
 <span><span class="co">## }  Field "log_r":</span></span>
-<span><span class="co">## 0x556b697b6fa0</span></span>
+<span><span class="co">## 0x562cb1919300</span></span>
 <span><span class="co">## {"id": 4,</span></span>
 <span><span class="co">## "value": 0,</span></span>
 <span><span class="co">## "estimated_value": 0,</span></span>
-<span><span class="co">## "min": "-Infinity",</span></span>
-<span><span class="co">## "max": "Infinity",</span></span>
-<span><span class="co">## "estimation type is": "constant"</span></span>
+<span><span class="co">## "estimation_type": "constant"</span></span>
 <span><span class="co">## }  Field "log_rzero":</span></span>
-<span><span class="co">## 0x556b65f331b0</span></span>
+<span><span class="co">## 0x562cb58bf0c0</span></span>
 <span><span class="co">## {"id": 2,</span></span>
 <span><span class="co">## "value": 0,</span></span>
 <span><span class="co">## "estimated_value": 0,</span></span>
-<span><span class="co">## "min": "-Infinity",</span></span>
-<span><span class="co">## "max": "Infinity",</span></span>
-<span><span class="co">## "estimation type is": "constant"</span></span>
+<span><span class="co">## "estimation_type": "constant"</span></span>
 <span><span class="co">## }  Field "logit_steep":</span></span>
-<span><span class="co">## 0x556b67dc6720</span></span>
+<span><span class="co">## 0x562cb58cbee0</span></span>
 <span><span class="co">## {"id": 1,</span></span>
 <span><span class="co">## "value": 0,</span></span>
 <span><span class="co">## "estimated_value": 0,</span></span>
-<span><span class="co">## "min": "-Infinity",</span></span>
-<span><span class="co">## "max": "Infinity",</span></span>
-<span><span class="co">## "estimation type is": "constant"</span></span>
-<span><span class="co">## }  Field "nyears":</span></span>
-<span><span class="co">## C++ object &lt;0x556b6a53f630&gt; of class 'SharedInt' &lt;0x556b5e5b0340&gt;</span></span></code></pre>
+<span><span class="co">## "estimation_type": "constant"</span></span>
+<span><span class="co">## }  Field "n_years":</span></span>
+<span><span class="co">## C++ object &lt;0x562cb632e3b0&gt; of class 'SharedInt' &lt;0x562cb73f90b0&gt;</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="simulate-data-using-the-fims-module">Simulate data using the FIMS module<a class="anchor" aria-label="anchor" href="#simulate-data-using-the-fims-module"></a>
@@ -387,7 +396,7 @@ Add the the following to the list of methods:</p>
 <code class="sourceCode R"><span><span class="co"># set the two parameters from the recruitment module:</span></span>
 <span><span class="va">r0</span> <span class="op">&lt;-</span> <span class="fl">1e+06</span>; <span class="va">h</span> <span class="op">&lt;-</span> <span class="fl">0.75</span>; <span class="va">phi_0</span> <span class="op">&lt;-</span> <span class="fl">0.1</span></span>
 <span><span class="va">recruitment</span><span class="op">$</span><span class="va">log_rzero</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">r0</span><span class="op">)</span></span>
-<span><span class="va">recruitment</span><span class="op">$</span><span class="va">logit_steep</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu">FIMSRTMB</span><span class="fu">::</span><span class="fu">logit</span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">1.0</span>, <span class="fl">0.75</span><span class="op">)</span>;</span>
+<span><span class="va">recruitment</span><span class="op">$</span><span class="va">logit_steep</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu">FIMSRTMB</span><span class="fu">::</span><span class="fu"><a href="../reference/Cpp_functions.html">logit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">1.0</span>, <span class="fl">0.75</span><span class="op">)</span>;</span>
 <span></span>
 <span><span class="co">#spawners from FIMS comparison test data</span></span>
 <span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9317.537</span>, <span class="fl">9388.807</span>, <span class="fl">9356.490</span>, <span class="fl">9325.130</span>, <span class="fl">8950.209</span>, <span class="fl">8720.467</span>, <span class="fl">8659.642</span>, <span class="fl">8613.245</span>, <span class="fl">7689.096</span>,</span>
@@ -407,7 +416,7 @@ Add the the following to the list of methods:</p>
 <span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X</span>, y <span class="op">=</span> <span class="va">Y</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="RTMB_add_module_files/figure-html/simulate-1.png" width="700"></p>
+<p><img src="RTMB_add_module_files/figure-html/simulate-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level3">
 <h3 id="set-up-rtmb-model">Set up RTMB model<a class="anchor" aria-label="anchor" href="#set-up-rtmb-model"></a>
@@ -474,7 +483,7 @@ Add the the following to the list of methods:</p>
 <pre><code><span><span class="co">## log_rzero </span></span>
 <span><span class="co">##   1024205</span></span></code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">h</span>; <span class="fu">FIMSRTMB</span><span class="fu">::</span><span class="fu">inv_logit</span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">1.0</span>, <span class="va">opt</span><span class="op">$</span><span class="va">par</span><span class="op">[</span><span class="st">"logit_steep"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">h</span>; <span class="fu">FIMSRTMB</span><span class="fu">::</span><span class="fu"><a href="../reference/Cpp_functions.html">inv_logit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">1.0</span>, <span class="va">opt</span><span class="op">$</span><span class="va">par</span><span class="op">[</span><span class="st">"logit_steep"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.75</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 0.7468059</span></span></code></pre>
 </div>
@@ -486,11 +495,11 @@ Add the the following to the list of methods:</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Kelli F. Johnson, Jon K. T. Brodziak, Kathryn L. Doering, Andrea M. Havron, Ronald Klasky, Peter T. Kuriyama, Christopher M. Legault, Bai Li, Timothy J. Miller, Cole C. Monnahan, Megumi C. Oshima, Kyle W. Shertzer, Christine C. Stawitz, Jane Y. Sullivan, Matthew Supernaw, Ian G. Taylor, Nathan R. Vaughan.</p>
+  <p>Developed by Kelli F. Johnson, Grant D. Adams, Jon K. T. Brodziak, Kathryn L. Doering, Daniel R. Goethel, Andrea M. Havron, Ronald Klasky, Peter T. Kuriyama, Emily M. Liljestrand, Christopher M. Legault, Bai Li, Timothy J. Miller, Cole C. Monnahan, Elizabeth F. Perl, Megumi C. Oshima, Kyle W. Shertzer, Christine C. Stawitz, Jane Y. Sullivan, Matthew Supernaw, Ian G. Taylor, Nathan R. Vaughan, Erik H. Williams, Adrianne T. Wilson.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

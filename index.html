@@ -6,6 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Fisheries Integrated Modeling System (FIMS) • FIMSRTMB</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -14,16 +19,19 @@
 <meta property="og:title" content="Fisheries Integrated Modeling System (FIMS)">
 <meta name="description" content="The FIMSRTMB project accesses functions from the Fisheries Integrated Modeling System, a next-generation framework of stock assessment models, to make them available to RTMB for custom stock assessment model development, assisting fishery managers with the goal of achieving sustainable fisheries. This system, when completed in a few years, offers the NOAA Fisheries and global fisheries science communities an advanced set of stock assessment models. These tools can be used separately or in combination to incorporate ecosystem and socioeconomic data and models, as well as climate effects and other drivers within the marine environment, into stock assessment models.">
 <meta property="og:description" content="The FIMSRTMB project accesses functions from the Fisheries Integrated Modeling System, a next-generation framework of stock assessment models, to make them available to RTMB for custom stock assessment model development, assisting fishery managers with the goal of achieving sustainable fisheries. This system, when completed in a few years, offers the NOAA Fisheries and global fisheries science communities an advanced set of stock assessment models. These tools can be used separately or in combination to incorporate ecosystem and socioeconomic data and models, as well as climate effects and other drivers within the marine environment, into stock assessment models.">
+<meta property="og:image" content="https://NOAA-FIMS.github.io/FIMSRTMB/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <img class="navlogo" src="https://noaa-fims.github.io/images/FIMS_logo3.png" alt="FIMS logo with a fish" width="60" align="left"><a class="navbar-brand me-2" href="index.html">FIMSRTMB</a>
 
-    <a class="navbar-brand me-2" href="index.html">FIMSRTMB</a>
-
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,23 +40,36 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
-<li class="nav-item"><a class="nav-link" href="articles/index.html">Articles</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-reference" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">reference</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-reference">
+<li><a class="dropdown-item" href="reference/index.html">r/roxygen</a></li>
+    <li><a class="external-link dropdown-item" href="https://noaa-fims.github.io/FIMS/doxygen/index.html">c++/doxygen</a></li>
+  </ul>
+</li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/RTMB_demo.html">RTMB demo</a></li>
+    <li><a class="dropdown-item" href="articles/RTMB_add_module.html">RTMB add module</a></li>
+  </ul>
+</li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-news" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">News</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-news">
 <li><h6 class="dropdown-header" data-toc-skip>Releases</h6></li>
-    <li><a class="external-link dropdown-item" href="https://github.com/NOAA-FIMS/FIMS/releases/tag/v0.1.0">Version 0.1.0</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/NOAA-FIMS/FIMS/releases/latest">Latest release</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="news/index.html">Changelog</a></li>
   </ul>
 </li>
       </ul>
 <ul class="navbar-nav">
+<li class="nav-item"><a class="external-link nav-link" href="https://noaa-fims.github.io/">fims website</a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/noaa-fims/fimsrtmb" aria-label="GitHub repository for FIMSRTMB"><span class="fa fa-brands fa-github fa-lg"></span></a></li>
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/noaa-fims/fims/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -58,9 +79,11 @@
 <div class="row">
   <main id="main" class="col-md-9"><p><!-- badges: start --> <a href="https://noaa-fims.r-universe.dev/FIMS" class="external-link"><img src="https://noaa-fims.r-universe.dev/badges/FIMS" alt="FIMS status badge"></a> <a href="https://github.com/NOAA-FIMS/FIMS/actions/workflows/call-r-cmd-check.yml" class="external-link"><img src="https://github.com/NOAA-FIMS/FIMS/actions/workflows/call-r-cmd-check.yml/badge.svg?branch=main" alt="R-CMD-check badge"></a> <a href="https://app.codecov.io/gh/NOAA-FIMS/FIMS?branch=main" class="external-link"><img src="https://codecov.io/gh/NOAA-FIMS/FIMS/branch/main/graph/badge.svg" alt="Codecov test coverage"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a> <!-- badges: end --></p>
 <div class="section level1">
-<div class="page-header"><h1 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
-</h1></div>
-<p>This fork represents an RTMB extension of the NOAA Fisheries Integrated Modeling System (FIMS). Users can access functions within FIMS to build their own custom fisheries models using RTMB. Examples are provided in the <a href="https://noaa-fims.github.io/FIMSRTMB/articles/index.html" class="external-link">vignettes</a>. Currently, the only two functions available is logisitic selectivity and Beverton-Holt recruitment. Please see detailed instructions in <a href="https://noaa-fims.github.io/FIMSRTMB/articles/RTMB_add_module.html" class="external-link">RTMB_add_module</a> on how to make a FIMS function available for RMTB.</p>
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h1>
+</div>
+<p>This fork represents an RTMB extension of the NOAA Fisheries Integrated Modeling System (FIMS). Users can access functions within FIMS to build their own custom fisheries models using RTMB. Examples are provided in the <a href="https://noaa-fims.github.io/FIMSRTMB/articles/index.html" class="external-link">vignettes</a>. Currently, the only two functions available is logistic selectivity and Beverton-Holt recruitment. Please see detailed instructions in <a href="https://noaa-fims.github.io/FIMSRTMB/articles/RTMB_add_module.html" class="external-link">RTMB_add_module</a> on how to make a FIMS function available for RTMB.</p>
 <p>**Note that this fork does not run a FIMS model, it only accesses FIMS functions. See the <a href="https://noaa-fims.github.io/FIMS/" class="external-link">FIMS</a> main repo for details on the FIMS R package.</p>
 <p>Users and developers are welcome to submit ideas or questions using the <a href="https://github.com/NOAA-FIMS/FIMS/discussions" class="external-link">GitHub Discussion Board</a>. The <a href="https://github.com/NOAA-FIMS/FIMS/discussions" class="external-link">Discussion Board</a> is a place for <strong>all</strong> members of the assessment and open-source software community to ask and answer questions, share updates, have open-ended conversations, and follow along on decisions affecting FIMS. If you happen to find a bug, please report it to the issues page in this <a href="https://github.com/NOAA-FIMS/FIMSRTMB/issues" class="external-link">FIMSRTMB fork</a>.</p>
 <div class="section level2">
@@ -70,14 +93,11 @@
 <pre><code>remotes::install_github("NOAA-FIMS/FIMSRTMB)</code></pre>
 </div>
 <div class="section level2">
-<h2 id="getting-help">Getting Help<a class="anchor" aria-label="anchor" href="#getting-help"></a>
+<h2 id="troubleshooting">Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"></a>
 </h2>
-<p>Please report bugs along with a minimal reproducible example on the FIMS <a href="https://github.com/NOAA-FIMS/FIMSRTMB/issues" class="external-link">GitHub Issues page</a>.</p>
-</div>
-<div class="section level2">
-<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
-</h2>
-<p>All contributors participating and contributing to the FIMS project are expected to adhere to the <a href="https://noaa-fims.github.io/collaborative_workflow/code-of-conduct.html#code-of-conduct" class="external-link">FIMS Code of Conduct</a>.</p>
+<p>If you encounter a <span class="emoji" data-emoji="bug">🐛</span>, please file an <a href="https://github.com/NOAA-FIMS/FIMS/issues" class="external-link">Issue</a> with a minimal reproducible example on GitHub.</p>
+<p>If you are uncertain that you have actually encountered a <span class="emoji" data-emoji="bug">🐛</span>, are looking for more information, or want to talk about some new ideas please use the <a href="https://github.com/orgs/NOAA-FIMS/discussions" class="external-link">Discussion Board</a> to post your thoughts. Anyone interested in our project is welcome to join the discussions, this is a place for <strong>all</strong> members of the assessment and open-source software community to ask and answer questions, share updates, have open-ended conversations, and follow along. Please introduce yourself <span class="emoji" data-emoji="wave">👋</span> on the <a href="https://github.com/orgs/NOAA-FIMS/discussions/801" class="external-link">Introduction Discussion</a>.</p>
+<p>More information can be found on the <a href="https://noaa-fims.github.io" target="_blank" class="external-link">NOAA-FIMS website</a>, particularly on <a href="https://noaa-fims.github.io/blog/" target="_blank" class="external-link">our blog</a>.</p>
 <hr>
 </div>
 <div class="section level2">
@@ -86,7 +106,7 @@
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
-<p>All contributions to this project are gratefully acknowledged using the <a href="https://github.com/ropensci/allcontributors" class="external-link"><code>allcontributors</code> package</a> following the <a href="https://allcontributors.org" class="external-link">all-contributors</a> specification. Contributions of any kind are welcome!</p>
+<p>All contributions to this project are gratefully acknowledged using the <a href="https://github.com/ropensci/allcontributors" class="external-link"><code>allcontributors</code> package</a> following the <a href="https://allcontributors.org" class="external-link">allcontributors</a> specification. Contributions of any kind are welcome!</p>
 <div class="section level3">
 <h3 id="code">Code<a class="anchor" aria-label="anchor" href="#code"></a>
 </h3>
@@ -105,10 +125,10 @@
 <a href="https://github.com/msupernaw" class="external-link"> <img src="https://avatars.githubusercontent.com/u/4933904?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=msupernaw" class="external-link">msupernaw</a>
 </td>
 <td align="center">
-<a href="https://github.com/k-doering-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/48930335?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=k-doering-NOAA" class="external-link">k-doering-NOAA</a>
+<a href="https://github.com/kellijohnson-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/4108564?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=kellijohnson-NOAA" class="external-link">kellijohnson-NOAA</a>
 </td>
 <td align="center">
-<a href="https://github.com/kellijohnson-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/4108564?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=kellijohnson-NOAA" class="external-link">kellijohnson-NOAA</a>
+<a href="https://github.com/k-doering-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/48930335?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=k-doering-NOAA" class="external-link">k-doering-NOAA</a>
 </td>
 <td align="center">
 <a href="https://github.com/nathanvaughan-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/53061482?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=nathanvaughan-NOAA" class="external-link">nathanvaughan-NOAA</a>
@@ -119,36 +139,62 @@
 <a href="https://github.com/JaneSullivan-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/68303089?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=JaneSullivan-NOAA" class="external-link">JaneSullivan-NOAA</a>
 </td>
 <td align="center">
-<a href="https://github.com/JonBrodziak" class="external-link"> <img src="https://avatars.githubusercontent.com/u/11236454?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=JonBrodziak" class="external-link">JonBrodziak</a>
+<a href="https://github.com/Eshaan-byte" class="external-link"> <img src="https://avatars.githubusercontent.com/u/146680427?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=Eshaan-byte" class="external-link">Eshaan-byte</a>
 </td>
 <td align="center">
-<a href="https://github.com/MOshima-PIFSC" class="external-link"> <img src="https://avatars.githubusercontent.com/u/78562167?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=MOshima-PIFSC" class="external-link">MOshima-PIFSC</a>
+<a href="https://github.com/awilnoaa" class="external-link"> <img src="https://avatars.githubusercontent.com/u/167116769?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=awilnoaa" class="external-link">awilnoaa</a>
 </td>
 <td align="center">
 <a href="https://github.com/iantaylor-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/4992918?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=iantaylor-NOAA" class="external-link">iantaylor-NOAA</a>
 </td>
 <td align="center">
-<a href="https://github.com/timjmiller" class="external-link"> <img src="https://avatars.githubusercontent.com/u/17852156?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=timjmiller" class="external-link">timjmiller</a>
+<a href="https://github.com/MOshima-PIFSC" class="external-link"> <img src="https://avatars.githubusercontent.com/u/78562167?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=MOshima-PIFSC" class="external-link">MOshima-PIFSC</a>
 </td>
 <td align="center">
-<a href="https://github.com/jimianelli" class="external-link"> <img src="https://avatars.githubusercontent.com/u/2715618?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=jimianelli" class="external-link">jimianelli</a>
+<a href="https://github.com/JonBrodziak" class="external-link"> <img src="https://avatars.githubusercontent.com/u/11236454?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=JonBrodziak" class="external-link">JonBrodziak</a>
 </td>
 <td align="center">
-<a href="https://github.com/peterkuriyama-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/103060418?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=peterkuriyama-NOAA" class="external-link">peterkuriyama-NOAA</a>
+<a href="https://github.com/szu-yun-ko" class="external-link"> <img src="https://avatars.githubusercontent.com/u/210009874?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=szu-yun-ko" class="external-link">szu-yun-ko</a>
 </td>
 </tr>
 <tr>
 <td align="center">
-<a href="https://github.com/abhinav-1305" class="external-link"> <img src="https://avatars.githubusercontent.com/u/113254225?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=abhinav-1305" class="external-link">abhinav-1305</a>
+<a href="https://github.com/jimianelli" class="external-link"> <img src="https://avatars.githubusercontent.com/u/2715618?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=jimianelli" class="external-link">jimianelli</a>
 </td>
 <td align="center">
-<a href="https://github.com/KyleShertzer-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/81244856?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=KyleShertzer-NOAA" class="external-link">KyleShertzer-NOAA</a>
+<a href="https://github.com/timjmiller" class="external-link"> <img src="https://avatars.githubusercontent.com/u/17852156?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=timjmiller" class="external-link">timjmiller</a>
+</td>
+<td align="center">
+<a href="https://github.com/Rohith-1717" class="external-link"> <img src="https://avatars.githubusercontent.com/u/200062616?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=Rohith-1717" class="external-link">Rohith-1717</a>
 </td>
 <td align="center">
 <a href="https://github.com/alexjensen-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/168662602?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=alexjensen-NOAA" class="external-link">alexjensen-NOAA</a>
 </td>
 <td align="center">
+<a href="https://github.com/peterkuriyama-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/103060418?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=peterkuriyama-NOAA" class="external-link">peterkuriyama-NOAA</a>
+</td>
+<td align="center">
+<a href="https://github.com/abhinav-1305" class="external-link"> <img src="https://avatars.githubusercontent.com/u/113254225?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=abhinav-1305" class="external-link">abhinav-1305</a>
+</td>
+<td align="center">
+<a href="https://github.com/ericward-noaa" class="external-link"> <img src="https://avatars.githubusercontent.com/u/5046884?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=ericward-noaa" class="external-link">ericward-noaa</a>
+</td>
+</tr>
+<tr>
+<td align="center">
+<a href="https://github.com/KyleShertzer-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/81244856?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=KyleShertzer-NOAA" class="external-link">KyleShertzer-NOAA</a>
+</td>
+<td align="center">
+<a href="https://github.com/e-perl-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/118312785?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=e-perl-NOAA" class="external-link">e-perl-NOAA</a>
+</td>
+<td align="center">
+<a href="https://github.com/LNo-cz" class="external-link"> <img src="https://avatars.githubusercontent.com/u/174143032?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=LNo-cz" class="external-link">LNo-cz</a>
+</td>
+<td align="center">
 <a href="https://github.com/mciechanumich" class="external-link"> <img src="https://avatars.githubusercontent.com/u/110423309?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=mciechanumich" class="external-link">mciechanumich</a>
+</td>
+<td align="center">
+<a href="https://github.com/Nimra-Arshad51" class="external-link"> <img src="https://avatars.githubusercontent.com/u/264476531?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=Nimra-Arshad51" class="external-link">Nimra-Arshad51</a>
 </td>
 <td align="center">
 <a href="https://github.com/RicardoYin01" class="external-link"> <img src="https://avatars.githubusercontent.com/u/123024031?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/commits?author=RicardoYin01" class="external-link">RicardoYin01</a>
@@ -181,6 +227,9 @@
 <td align="center">
 <a href="https://github.com/Schiano-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/125507018?u=b6dab08f04000188734eb3bbf78a40616e99b921&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+author%3ASchiano-NOAA" class="external-link">Schiano-NOAA</a>
 </td>
+<td align="center">
+<a href="https://github.com/chantelwetzel-noaa" class="external-link"> <img src="https://avatars.githubusercontent.com/u/6172110?u=fa2a894f014dc10b5204de094ae8ec153b7ca5a9&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+author%3Achantelwetzel-noaa" class="external-link">chantelwetzel-noaa</a>
+</td>
 </tr></table>
 </div>
 <div class="section level3">
@@ -188,9 +237,6 @@
 </h3>
 <table class="table">
 <tr>
-<td align="center">
-<a href="https://github.com/chantelwetzel-noaa" class="external-link"> <img src="https://avatars.githubusercontent.com/u/6172110?u=fa2a894f014dc10b5204de094ae8ec153b7ca5a9&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Achantelwetzel-noaa" class="external-link">chantelwetzel-noaa</a>
-</td>
 <td align="center">
 <a href="https://github.com/Rick-Methot-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/6250016?u=3730ea84740e5ec06865052e3c486f88ed574f5e&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3ARick-Methot-NOAA" class="external-link">Rick-Methot-NOAA</a>
 </td>
@@ -209,11 +255,11 @@
 <td align="center">
 <a href="https://github.com/James-Thorson-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/50178738?u=d314fbca8b41fdeb14212782d70b156a14e34af3&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3AJames-Thorson-NOAA" class="external-link">James-Thorson-NOAA</a>
 </td>
-</tr>
-<tr>
 <td align="center">
 <a href="https://github.com/kristanblackhart-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/89920963?u=e5fed919762f545e44319fd8808825878c7c3b40&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Akristanblackhart-NOAA" class="external-link">kristanblackhart-NOAA</a>
 </td>
+</tr>
+<tr>
 <td align="center">
 <a href="https://github.com/jbigman-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/164287934?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Ajbigman-NOAA" class="external-link">jbigman-NOAA</a>
 </td>
@@ -224,10 +270,39 @@
 <a href="https://github.com/rklasky" class="external-link"> <img src="https://avatars.githubusercontent.com/u/28567752?u=e28036c5bcac3c2f14f7de7d1dcc9b2f4f03a4e0&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Arklasky" class="external-link">rklasky</a>
 </td>
 <td align="center">
+<a href="https://github.com/codeafridi" class="external-link"> <img src="https://avatars.githubusercontent.com/u/177653516?u=e511f92ef3044bed0b11fdb2ae181754b77c869b&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Acodeafridi" class="external-link">codeafridi</a>
+</td>
+<td align="center">
 <a href="https://github.com/cgrandin" class="external-link"> <img src="https://avatars.githubusercontent.com/u/4551051?u=7d289d4508c6ba2f6d2691b71be5bd2dc5456115&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Acgrandin" class="external-link">cgrandin</a>
 </td>
 <td align="center">
-<a href="https://github.com/e-perl-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/118312785?u=975ef418e0a078e338b89a4f9eed851a08d2564d&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Ae-perl-NOAA" class="external-link">e-perl-NOAA</a>
+<a href="https://github.com/steffilazerte" class="external-link"> <img src="https://avatars.githubusercontent.com/u/14676081?u=579dde6328e94bc3787c99a42f7668a71884cd13&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Asteffilazerte" class="external-link">steffilazerte</a>
+</td>
+<td align="center">
+<a href="https://github.com/grantdadams" class="external-link"> <img src="https://avatars.githubusercontent.com/u/25754306?u=8905d14240f12344b16974444ae34f26bb20be18&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Agrantdadams" class="external-link">grantdadams</a>
+</td>
+</tr>
+<tr>
+<td align="center">
+<a href="https://github.com/mtvincent-NOAA" class="external-link"> <img src="https://avatars.githubusercontent.com/u/37819533?u=bf0d6c72d33785c62ff89b70963f4a76c37ce9d7&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Amtvincent-NOAA" class="external-link">mtvincent-NOAA</a>
+</td>
+<td align="center">
+<a href="https://github.com/averma2988225-droid" class="external-link"> <img src="https://avatars.githubusercontent.com/u/228820491?u=65b366d015576fba0e42513d2443a57aa6f2d4fa&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Aaverma2988225-droid" class="external-link">averma2988225-droid</a>
+</td>
+<td align="center">
+<a href="https://github.com/mollystevens-noaa" class="external-link"> <img src="https://avatars.githubusercontent.com/u/53794202?u=349e71933142169e93c418f94414fd6020a067f3&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Amollystevens-noaa" class="external-link">mollystevens-noaa</a>
+</td>
+<td align="center">
+<a href="https://github.com/emilyliljestrand" class="external-link"> <img src="https://avatars.githubusercontent.com/u/146266175?u=461532ddb4523c19ec9aa5168e2b12fe368ae63a&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Aemilyliljestrand" class="external-link">emilyliljestrand</a>
+</td>
+<td align="center">
+<a href="https://github.com/ayushk687" class="external-link"> <img src="https://avatars.githubusercontent.com/u/198456631?v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Aayushk687" class="external-link">ayushk687</a>
+</td>
+<td align="center">
+<a href="https://github.com/madhavgairola" class="external-link"> <img src="https://avatars.githubusercontent.com/u/214257149?u=6913da822e87fa18c8e5abcc371f2b175e26223e&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Amadhavgairola" class="external-link">madhavgairola</a>
+</td>
+<td align="center">
+<a href="https://github.com/aman-raj-srivastva" class="external-link"> <img src="https://avatars.githubusercontent.com/u/47248385?u=a50362811575f49b5574f5645911d3d85d06dc88&amp;v=4" width="100px;" alt=""></a><br><a href="https://github.com/NOAA-FIMS/FIMS/issues?q=is%3Aissue+commenter%3Aaman-raj-srivastva" class="external-link">aman-raj-srivastva</a>
 </td>
 </tr>
 </table>
@@ -241,7 +316,7 @@
 <p>Software code created by U.S. Government employees is not subject to copyright in the United States (17 U.S.C. section 105). The United States/Department of Commerce reserve all rights to seek and obtain copyright protection in countries other than the United States for Software authored in its entirety by the Department of Commerce. To this end, the Department of Commerce hereby grants to Recipient a royalty-free, nonexclusive license to use, copy, and create derivative works of the Software outside of the United States.</p>
 <hr>
 <p><img src="https://raw.githubusercontent.com/nmfs-general-modeling-tools/nmfspalette/main/man/figures/noaa-fisheries-rgb-2line-horizontal-small.png" height="75" alt="NOAA Fisheries"></p>
-<p><a href="https://www.commerce.gov/" class="external-link">U.S. Department of Commerce</a> | <a href="https://www.noaa.gov" class="external-link">National Oceanographic and Atmospheric Administration</a> | <a href="https://www.fisheries.noaa.gov/" class="external-link">NOAA Fisheries</a></p>
+<p><a href="https://www.commerce.gov/" class="external-link">U.S. Department of Commerce</a> | <a href="https://www.noaa.gov" class="external-link">National Oceanic and Atmospheric Administration</a> | <a href="https://www.fisheries.noaa.gov/" class="external-link">NOAA Fisheries</a></p>
 </div>
 </div>
 
@@ -250,8 +325,7 @@
 <ul class="list-unstyled">
 <li><a href="https://github.com/noaa-fims/fims/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/noaa-fims/fims/issues" class="external-link">Report a bug</a></li>
-<li><a href="https://noaa-fims.github.io/FIMS-docs/" class="external-link">Documentation of C++ Code</a></li>
-<li><a href="https://noaa-fims.github.io/collaborative_workflow/" class="external-link">FIMS Developer Handbook</a></li>
+<li><a href="https://noaa-fims.github.io/FIMS/doxygen/" class="external-link">Documentation of C++ Code</a></li>
 </ul>
 </div>
 
@@ -281,15 +355,19 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Kelli F. Johnson <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5149-451X" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Grant D. Adams <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-0297-8347" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Jon K. T. Brodziak <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8690-5588" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Kathryn L. Doering <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-0396-7044" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Daniel R. Goethel <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-0066-431X" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Andrea M. Havron <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-4080-448X" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Ronald Klasky <br><small class="roles"> Author </small> <a href="https://orcid.org/0009-0004-7563-7716" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Peter T. Kuriyama <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-6971-4015" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Emily M. Liljestrand <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-1118-3872" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Christopher M. Legault <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-0328-1376" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Bai Li <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-8249-1442" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Timothy J. Miller <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-1411-1206" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Cole C. Monnahan <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-0871-6700" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Elizabeth F. Perl <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-1608-8628" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Megumi C. Oshima <br><small class="roles"> Author </small> <a href="https://orcid.org/0009-0002-2239-1594" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Kyle W. Shertzer <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-7196-5959" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Christine C. Stawitz <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3122-4501" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
@@ -297,6 +375,8 @@
 <li>Matthew Supernaw <br><small class="roles"> Author </small> <a href="https://orcid.org/0009-0007-3681-7433" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Ian G. Taylor <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-4232-5669" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Nathan R. Vaughan <br><small class="roles"> Author </small> <a href="https://orcid.org/0009-0000-3054-6950" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Erik H. Williams <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-6623-4254" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Adrianne T. Wilson <br><small class="roles"> Author </small> <a href="https://orcid.org/0009-0006-1171-6014" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
@@ -308,11 +388,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Kelli F. Johnson, Jon K. T. Brodziak, Kathryn L. Doering, Andrea M. Havron, Ronald Klasky, Peter T. Kuriyama, Christopher M. Legault, Bai Li, Timothy J. Miller, Cole C. Monnahan, Megumi C. Oshima, Kyle W. Shertzer, Christine C. Stawitz, Jane Y. Sullivan, Matthew Supernaw, Ian G. Taylor, Nathan R. Vaughan.</p>
+  <p>Developed by Kelli F. Johnson, Grant D. Adams, Jon K. T. Brodziak, Kathryn L. Doering, Daniel R. Goethel, Andrea M. Havron, Ronald Klasky, Peter T. Kuriyama, Emily M. Liljestrand, Christopher M. Legault, Bai Li, Timothy J. Miller, Cole C. Monnahan, Elizabeth F. Perl, Megumi C. Oshima, Kyle W. Shertzer, Christine C. Stawitz, Jane Y. Sullivan, Matthew Supernaw, Ian G. Taylor, Nathan R. Vaughan, Erik H. Williams, Adrianne T. Wilson.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
