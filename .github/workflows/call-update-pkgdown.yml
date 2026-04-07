@@ -3,21 +3,9 @@
 name: call-update-pkgdown
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
-    branches: 
-      - main
-  workflow_dispatch:
-  # below is a trigger for when there are changes to the fims website, it pulls
-  # the bootstrap file name from there which occasionally changes
-  # file in that repo, which change whenever a significant change is made to
-  # the website for some reason
-  repository_dispatch:
-    types: [file-updated]
-
+    branches: [main]
 
 jobs:
   call-workflow:
-    uses: noaa-fims/FIMS/.github/workflows/build-pkgdown.yml@main
+    uses: nmfs-ost/ghactions4r/.github/workflows/update-pkgdown.yml@main
