@@ -68,7 +68,7 @@ Description: The FIMSRTMB project accesses functions from the
     climate effects and other drivers within the marine environment, into
     stock assessment models.
 License: GPL (>= 3) | file LICENSE
-URL: https://github.com/noaa-fims/fimsrtmb, https://noaa-fims.github.io,
+URL: https://github.com/noaa-fims/fimsrtmb, https://noaa-fims.github.io/FIMSRTMB,
     https://noaa-fisheries-integrated-toolbox.r-universe.dev/FIMS,
     https://noaa-fims.github.io/FIMS
 BugReports: https://github.com/noaa-fims/fims/issues
