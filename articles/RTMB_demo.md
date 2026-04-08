@@ -9,7 +9,7 @@ library(FIMSRTMB)
 FIMSRTMB:::setup_RTMB()
 ```
 
-    ## Global pointer successfully set: 0x7fc7fd3f48a0
+    ## Global pointer successfully set: 0x7f533c3f48a0
 
 ``` r
 library(ggplot2)
