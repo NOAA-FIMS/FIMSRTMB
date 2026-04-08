@@ -276,7 +276,7 @@ library(FIMSRTMB)
 FIMSRTMB:::setup_RTMB()
 ```
 
-    ## Global pointer successfully set: 0x7fb2f19f48a0
+    ## Global pointer successfully set: 0x7fc451df48a0
 
 ``` r
 library(ggplot2)
@@ -294,37 +294,37 @@ recruitment$show()
 
     ## Reference class object of class "Rcpp_BevertonHoltRecruitment"
     ## Field "log_devs":
-    ## 0x556c77792f10
+    ## 0x55f6d997f260
     ## {"id": 3,
     ## "value": 0,
     ## "estimated_value": 0,
     ## "estimation_type": "constant"
     ## }  Field "log_expected_recruitment":
-    ## 0x556c751e7aa0
+    ## 0x55f6d9baf430
     ## {"id": 5,
     ## "value": 0,
     ## "estimated_value": 0,
     ## "estimation_type": "constant"
     ## }  Field "log_r":
-    ## 0x556c765f3740
+    ## 0x55f6da0cab90
     ## {"id": 4,
     ## "value": 0,
     ## "estimated_value": 0,
     ## "estimation_type": "constant"
     ## }  Field "log_rzero":
-    ## 0x556c76353720
+    ## 0x55f6d24656b0
     ## {"id": 2,
     ## "value": 0,
     ## "estimated_value": 0,
     ## "estimation_type": "constant"
     ## }  Field "logit_steep":
-    ## 0x556c75c94d00
+    ## 0x55f6d4897810
     ## {"id": 1,
     ## "value": 0,
     ## "estimated_value": 0,
     ## "estimation_type": "constant"
     ## }  Field "n_years":
-    ## C++ object <0x556c83165c60> of class 'SharedInt' <0x556c7c0d8810>
+    ## C++ object <0x55f6e2838ab0> of class 'SharedInt' <0x55f6db56d1e0>
 
 ### Simulate data using the FIMS module
 
