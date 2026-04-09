@@ -74,9 +74,9 @@ h1.title, h1.mobile {
 
 /* Link styles - using $blue-50 as the primary link color from colors.scss */
 a { font-weight: bold; }
-a:link { color: #0e6876;	}
-a:visited { color: #0e6876;	}
-a:hover { color: #0b535e; } 
+a:link { color: #0e6876;}
+a:visited { color: #0e6876;}
+a:hover { color: #0b535e; }
 
 .leftAlignImage img, .rightAlignImage img {
   width: 200px;
@@ -139,7 +139,7 @@ a:hover { color: #0b535e; }
 
 #navbar.collapse.navbar-collapse {
     display: flex !important;
-    justify-content: end !important; 
+    justify-content: end !important;
     margin-left: 0 !important;
 }
 
@@ -154,7 +154,7 @@ a:hover { color: #0b535e; }
 .navbar-container .navbar-brand-container {
     display: flex;
     /* align-items: center !important;  */
-    gap: 10px; 
+    gap: 10px;
 }
 
 .navbar-brand {
@@ -175,11 +175,11 @@ small, .small {
 }
 
 .navbar .container {
-    padding-top: 0px;  
-    padding-bottom: 0px; 
+    padding-top: 0px;
+    padding-bottom: 0px;
     display: flex !important;
     /* align-items: center !important; */
-    max-width: 95% !important; 
+    max-width: 95% !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
@@ -191,7 +191,7 @@ small, .small {
 }
 
 .col-md-9, .col-md-3 {
-    padding-left: 10px !important; 
+    padding-left: 10px !important;
     padding-right: 10px !important;
 }
 
@@ -202,15 +202,14 @@ html, body {
 }
 
 .navlogo {
-    margin-right: 20px !important; 
+    margin-right: 20px !important;
     margin-top: auto !important;     /* Auto margin pushes it to the center */
     margin-bottom: auto !important; /* Auto margin pushes it to the center */
     vertical-align: middle !important; /* Keep as a fallback */
-    vertical-align: middle !important; 
     width: 90px !important;
-    max-width: 80px !important; 
+    max-width: 80px !important;
     min-width: 80px !important;
-    height: auto; 
+    height: auto;
     float: none !important;
 }
 
@@ -225,18 +224,18 @@ html, body {
 }
 
 .nav-item .nav-link, .nav-item .nav-link:visited {
-    color: #51595d !important; 
+    color: #51595d !important;
     text-transform: lowercase !important;
-    font-size: 1.1rem !important; 
+    font-size: 1.1rem !important;
 }
 
 .nav-item .nav-link:hover {
-    color: #0e6270cc !important; 
+    color: #0e6270cc !important;
     background: none !important;
 }
 
 .nav-item.active .nav-link {
-    border-bottom: 3px solid #f54f61; 
+    border-bottom: 3px solid #f54f61;
     color: #0e6876 !important;
     background: none !important;
 }
@@ -247,7 +246,7 @@ html, body {
 
 .dropdown-header {
     margin-top: 0 !important;
-    font-size: 1.15rem !important; 
+    font-size: 1.15rem !important;
     color: #0e6876 !important;
     text-transform: lowercase !important;
 }
